@@ -11,4 +11,9 @@
 
 /*_____ D E C L A R A T I O N S ____________________________________________*/
 void set_buzzer_pitch(uint8_t pitch);
+
+void buzzer_bip(uint16_t time_delay_ms);
+
+void buzzer_stop(void);
+void buzzer_update(void);
 #endif	/*__BUZZER_H*/

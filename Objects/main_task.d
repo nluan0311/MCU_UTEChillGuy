@@ -12,5 +12,4 @@
   Source\main_task\..\Module\KeyScan.h \
   Source\main_task\..\Module\Buzzer.h \
   Source\main_task\..\Module\Segment.h \
-  Source\main_task\..\main_task\main_task.h \
   Source\main_task\..\main_task\hand_task.h

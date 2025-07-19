@@ -64,11 +64,11 @@ void FLASH_EraseSector(volatile uint32_t adr)
 	__FLASH_CLEAR_ERROR_STATUS;			// Reset Error Flags
 	
  	SN_FLASH->CTRL = FLASH_PER;			// Page Erase Enabled
-	SN_FLASH->ADDR = adr;						// Page Address
+	SN_FLASH->ADDR = adr;				// Page Address
 
 	__FLASH_WAIT_FOR_DONE;	
 	
-	__FLASH_START_OPERATION;				// Start Erase
+	__FLASH_START_OPERATION;			// Start Erase
 
 	__FLASH_WAIT_FOR_DONE;
 }
@@ -85,12 +85,12 @@ void FLASH_EraseSector(volatile uint32_t adr)
 *****************************************************************************/
 uint32_t FLASH_ProgramPage(volatile uint32_t adr, volatile uint32_t sz, uint8_t *pBuf)
 {
-	sz = (sz + 3) & ~3;											// Adjust size for Words
+	sz = (sz + 3) & ~3;						    	// Adjust size for Words
 	
-	SN_FLASH->STATUS  &= ~(FLASH_ERR);			// Reset Error Flags
+	SN_FLASH->STATUS  &= ~(FLASH_ERR);		    	// Reset Error Flags
 	
-	SN_FLASH->CTRL = FLASH_PG;                  // Programming Enabled
-	
+	SN_FLASH->CTRL = FLASH_PG;                      // Programming Enabled
+	 
 	SN_FLASH->ADDR = adr;
 	
 	while (sz)
@@ -103,8 +103,8 @@ uint32_t FLASH_ProgramPage(volatile uint32_t adr, volatile uint32_t sz, uint8_t 
 			FLASH_WAIT_FOR_DONE;
 
 			// FLASH_ERR = 0x04
-			if (SN_FLASH->STATUS & FLASH_ERR) {	// Check for Errors
-				return (FAIL);												// Failed
+			if (SN_FLASH->STATUS & FLASH_ERR) {	    // Check for Errors
+				return (FAIL);						// Failed
 			}
     }
 		
@@ -115,7 +115,7 @@ uint32_t FLASH_ProgramPage(volatile uint32_t adr, volatile uint32_t sz, uint8_t 
 		
 	  if ((((adr >> 2) % 2) == 0)) 
 		{
-			SN_FLASH->CTRL = FLASH_PG;					// Programming Enabled
+		  SN_FLASH->CTRL = FLASH_PG;			    // Programming Enabled
 		  SN_FLASH->ADDR = adr;
 		}
 	}

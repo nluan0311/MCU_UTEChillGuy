@@ -18,10 +18,10 @@
 #define	CT16B0_CLKSEL_HCLK 								0
 #define	CT16B0_CLKSEL_PLL_VCO							1
 #define mskCT16B0_CLKSEL_HCLK							(CT16B0_CLKSEL_HCLK << 0)
-#define	mskCT16B0_CLKSEL_PLL_VCO  				(CT16B0_CLKSEL_PLL_VCO << 0)
+#define	mskCT16B0_CLKSEL_PLL_VCO  			        	(CT16B0_CLKSEL_PLL_VCO << 0)
 
 #define __CT16B0_CLKSEL_HCLK							SN_SYS0->CT_CLKSEL_b.CLKSEL0 = CT16B0_CLKSEL_HCLK
-#define __CT16B0_CLKSEL_PLL_VCO						SN_SYS0->CT_CLKSEL_b.CLKSEL0 = CT16B0_CLKSEL_PLL_VCO
+#define __CT16B0_CLKSEL_PLL_VCO						    SN_SYS0->CT_CLKSEL_b.CLKSEL0 = CT16B0_CLKSEL_PLL_VCO
 
 /*_____ D E C L A R A T I O N S ____________________________________________*/
 

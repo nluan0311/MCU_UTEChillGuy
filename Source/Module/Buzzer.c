@@ -20,6 +20,11 @@
 #include "Buzzer.h"
 #include "..\Driver\CT16B0.h"
 /*_____ D E C L A R A T I O N S ____________________________________________*/
+static uint8_t blink_led0_active = 0;
+static uint8_t blink_led1_active = 0;
+static uint8_t beep_active = 0;
+static uint16_t beep_timer = 0;
+static uint16_t beep_duration_ms = 0;
 
 /*_____ D E F I N I T I O N S ______________________________________________*/
 #define	SET_PITCH0_FREQ		261.6f
@@ -34,8 +39,11 @@
 #define	SET_PITCH8_FREQ		587.3f
 #define	SET_PITCH9_FREQ	    659.3f
 
+#define LOUD_BEEP_FREQ_MAIN 2730.0f 
 
 #define	HCLK_FREQ			12000000
+
+#define HCLK_FREQ_MAIN      12000000
 
 /*_____ M A C R O S ________________________________________________________*/
 
@@ -89,3 +97,37 @@ void set_buzzer_pitch(uint8_t pitch)
 		SN_CT16B0->MR0 = 0;		                        //disable buzzer;
 	}
 }
+
+void buzzer_bip(uint16_t time_delay_ms)
+{
+    uint16_t timer_period = (uint16_t)(HCLK_FREQ_MAIN / LOUD_BEEP_FREQ_MAIN);
+
+    SN_CT16B0->MR9 = timer_period;
+    SN_CT16B0->MR0 = timer_period >> 1;
+
+    SN_CT16B0->TMRCTRL = 0;
+    SN_CT16B0->TMRCTRL = 1;
+
+    beep_timer = 0;
+    beep_active = 1;
+    beep_duration_ms = time_delay_ms;
+}
+void buzzer_stop(void)
+{
+    SN_CT16B0->TMRCTRL = 0;     // Tắt Timer – dừng buzzer
+    beep_active = 0;            // Không còn kêu nữa
+    beep_timer = 0;             // Reset thời gian đếm
+}
+
+void buzzer_update(void)
+{
+    if (beep_active)
+    {
+        beep_timer++;
+        if (beep_timer >= beep_duration_ms)
+        {
+            buzzer_stop();   // Tắt buzzer sau khi kêu đủ thời gian
+        }
+    }
+}
+

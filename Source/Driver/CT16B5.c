@@ -21,7 +21,7 @@
 #include <SN32F400.h>
 #include "CT16.h"
 #include "CT16B5.h"
-
+#include "..\Module\Segment.h"
 /*_____ D E C L A R A T I O N S ____________________________________________*/
 volatile uint32_t iwCT16B5_IrqEvent = 0x00; //The bitmask usage of iwCT16Bn_IrqEvent is the same with CT16Bn_RIS
 
@@ -47,6 +47,7 @@ uint8_t timer_1ms_bt5 = 0;
 * Return		: None
 * Note			: None
 *****************************************************************************/
+#if 0
  void CT16B5_IRQHandler(void)
 {
 	uint32_t iwRisStatus;
@@ -138,6 +139,18 @@ uint8_t timer_1ms_bt5 = 0;
 		}	
 	}
 }
+#endif 
+ void CT16B5_IRQHandler(void)
+{
+	if (SN_CT16B5->RIS & mskCT16_MR0IF)
+	{
+
+		Digital_Scan();
+		
+		
+		SN_CT16B5->IC = mskCT16_MR0IC;
+	}
+}
 
 /*****************************************************************************
 * Function		: CT16B5_Init
@@ -147,6 +160,7 @@ uint8_t timer_1ms_bt5 = 0;
 * Return		: None
 * Note			: None
 *****************************************************************************/
+#if 0
 void CT16B5_Init(void)
 {
 	 __CT16B5_ENABLE;
@@ -162,6 +176,32 @@ void CT16B5_Init(void)
 
 //    SN_CT16B5->IC = mskCT16_MR0IC;
 //    SN_CT16B5->CR = 1;  // Start timer
+}
+#endif 
+
+void CT16B5_Init(void)
+{
+	// Cấp clock cho Timer5
+	__CT16B5_ENABLE;
+  
+	// Dừng và reset timer để cấu hình
+	SN_CT16B5->TMRCTRL = mskCT16_CRST;
+	while(SN_CT16B5->TMRCTRL & mskCT16_CRST); // Đợi cho đến khi timer reset xong
+	
+	// Cấu hình timer mode
+	SN_CT16B5->CNTCTRL = mskCT16_CTM_TIMER;
+
+	// Đặt giá trị đếm cho MR0 để có ngắt mỗi 2ms.
+	// Với HCLK = 12MHz, 2ms tương đương 24000 chu kỳ clock.
+	SN_CT16B5->MR0 = (12000 * 2) - 1;
+
+	// Cấu hình Match Control Register
+	// MR0IE: Bật ngắt khi bộ đếm (TC) bằng MR0
+	// MR0RST: Tự động reset bộ đếm về 0 khi TC bằng MR0
+	SN_CT16B5->MCTRL = mskCT16_MR0IE_EN | mskCT16_MR0RST_EN;
+
+	// Bắt đầu đếm
+	SN_CT16B5->TMRCTRL = mskCT16_CEN_EN;
 }
 
 /*****************************************************************************

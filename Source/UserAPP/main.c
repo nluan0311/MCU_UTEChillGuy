@@ -22,12 +22,13 @@
 * VERSION           2
 *gmail              trannam63623@gmail.com
 *****************************************************************************/
-/*_____ I N C L U D E S ____________________________________________________*/
+/*_____ I N C L U D E S _______________________________________________________________*/
 #include <SN32F400.h>
 #include <SN32F400_Def.h>
 #include "..\Driver\GPIO.h"
 #include "..\Driver\CT16B0.h"
 #include "..\Driver\CT16B1.h"
+#include "..\Driver\CT16B5.h"
 #include "..\Driver\WDT.h"
 #include "..\Driver\ADC.h"
 #include "..\Driver\Utility.h"
@@ -39,7 +40,7 @@
 
 /*_____ I N C L U D E S M Y C O D E ____________________________________________________*/
 #include "..\main_task\main_task.h"
-/*_____ D E C L A R A T I O N S ____________________________________________*/
+/*_____ D E C L A R A T I O N S ________________________________________________________*/
 void PFPA_Init(void);
 void NotPinOut_GPIO_init(void);
 //uint16_t read_key;
@@ -47,13 +48,13 @@ void NotPinOut_GPIO_init(void);
 //uint8_t key_val;
 //uint16_t led_timer = 0;
 
-/*_____ D E F I N I T I O N S ______________________________________________*/
+/*_____ D E F I N I T I O N S ___________________________________________________________*/
 #ifndef	SN32F407					//Do NOT Remove or Modify!!!
 	#error Please install SONiX.SN32F4_DFP.0.0.18.pack or version >= 0.0.18
 #endif
 #define	PKG						SN32F407				//User SHALL modify the package on demand (SN32F407)
 
-/*_____ M A C R O S ________________________________________________________*/
+/*_____ M A C R O S ______________________________________________________________________*/
 
 
 /*****************************************************************************
@@ -93,108 +94,14 @@ int	main(void)
 	SN_PFPA->CT16B0_b.PWM0 = 1;
 
 
-	CT16B1_Init();					        	//timer 1ms
+	CT16B1_Init();	
+	CT16B5_Init();				        	//timer 1ms
 	
 	while (1)
 	{
 		__WDT_FEED_VALUE;
 		main_task_run();
-//		read_key = KeyScan();
-
-//			if (read_key & KEY_PUSH_FLAG)
-//			{
-//					uint8_t key_val = read_key & 0xFF;
-
-//					switch (key_val)
-//					{
-//							case KEY_3:
-//									SET_LED0_ON;
-//									UT_DelayNx10us(500);  // delay 0.5s
-//									SET_LED0_OFF;
-//									break;
-
-//							case KEY_4:
-//									SET_LED1_ON;
-//									UT_DelayNx10us(500);
-//									SET_LED1_OFF;
-//									break;
-
-//							default:
-//									break;
-//					}
-//				}
-#if 0
-		if(timer_1s_flag)
-		{
-			timer_1s_flag = 0;
-
-		 if (++seconds >= 60) 
-					 {
-										seconds = 0;
-										if (++minutes >= 60)
-						 {
-												minutes = 0;
-												if (++hours >= 24) 
-							{
-														hours = 0;
-												}
-										}
-							}
-					Digital_DisplayDEC(hours * 100 + minutes);
-					 }
-		if(timer_1ms_flag)
-		{
-			timer_1ms_flag = 0;
-			Digital_Scan();
-		}
 		
-//		read_key = KeyScan();
-
-//if (read_key & KEY_PUSH_FLAG)
-//{
-//    uint8_t key_val = read_key & 0xFF;
-
-//    switch (key_val)
-//    {
-//        case KEY_3:
-//            SET_LED0_ON;
-//            UT_DelayNx10us(500);  // delay 0.5s
-//            SET_LED0_OFF;
-//            break;
-
-//        case KEY_4:
-//            SET_LED1_ON;
-//				    	set_buzzer_pitch(5);
-//            UT_DelayNx10us(5000);
-//							set_buzzer_pitch(255);
-//            SET_LED1_OFF;
-//            break;
-
-//        default:
-//            break;
-//    }
-//}
-		#if 0
-		if(timer_1ms_flag)
-		{
-			timer_1ms_flag = 0;
-			key_code = KeyScan();
-			if(key_code & KEY_PUSH_FLAG)		// key push action
-			{
-				for(i=0;i<16;i++)							//find key code
-				{
-					if(key_table[i] == (key_code & 0xff))
-					{
-						break;
-					}
-				}
-				set_buzzer_pitch(i);
-				
-			}
-		} 
-		#endif
-
-#endif		
 	}
 }
 /*****************************************************************************

@@ -10,9 +10,11 @@
 #include "..\Module\Buzzer.h"
 #include "..\Module\Segment.h"
 /******************************************************/
-#include "..\main_task\main_task.h"
+
 #include "..\main_task\hand_task.h"
 ///****************************MACRO***************************************/
+static uint16_t key_timeout_counter = 0;
+#define KEY_TIMEOUT_MS 30000
 
 /**************************Clock***********************/
 static uint32_t  led_timer     = 0;    // couter LED
@@ -27,6 +29,11 @@ static uint8_t   down = 0;
 static uint8_t   hours   = 23;
 static uint8_t   minutes = 59;
 static uint8_t   seconds = 55;
+
+static uint8_t   arm_hours   = 0;
+static uint8_t   arm_minutes = 0;
+static uint8_t   arm_seconds = 0;
+
 /**************************Clock***********************/
 static uint16_t read_key;
 static uint16_t key_code;
@@ -47,7 +54,7 @@ static uint8_t led_state[2] = {0, 0}; // 0: TẮT, 1: BẬT
 static uint8_t blink_led1_active = 0;
 /**************************Clock***********************/
 
-/*__________________________ D E F I N I T I O N S ______________________________________________*/
+/*______________________________________________ D E F I N I T I O N S ______________________________________________*/
 
 /*______________________________________________ D E C L A R A T I O N S ____________________________________________*/
 //static void save_timer_flash(void);
@@ -59,6 +66,8 @@ static void clock_timer();
 static void clock_update();
 static void key_SW(void);
 
+static void time_out();
+
 static void led_blink_update(uint8_t led_num, uint16_t time_delay_ms);
 static uint8_t blink_led0_active = 1;
 /*-----------------------------------FUNSION----------------------------*/
@@ -67,11 +76,11 @@ static void key_SW(void)
     if (read_key & KEY_PUSH_FLAG)
     {
     uint8_t key_val = read_key & 0xFF;
-
+     uint8_t mode = (key1_pressed) ? key1_count : key14_count;
         switch (key_val)
         {
-            case KEY_1:// time setting
-            if (!key14_pressed) // KEY_1 chỉ hoạt động nếu KEY_14 đang không kích hoạt
+            case KEY_1:
+            if (!key14_pressed) 
             {
                 key1_pressed = 1;
                 key14_pressed = 0;
@@ -80,18 +89,19 @@ static void key_SW(void)
                 if (key1_count > 2)
                 {
                     key1_count = 0;
-                    key1_pressed = 0; // Thoát chế độ
+                    key1_pressed = 0; 
                 }
-
-                blink_led0_active = 1; // Bắt đầu nháy
+                buzzer_bip(200);
+                blink_led0_active = 1;
+                //key_timeout_counter = 0
             }
-
+            
             break;
 
             case KEY_4://Up
-            if (key1_pressed || key14_pressed) 
+            if (key1_pressed) 
             {
-                uint8_t mode = key1_pressed ? key1_count : key14_count;
+               
 
                 if (mode == 1)
                         hours = (hours + 1) % 24;
@@ -100,13 +110,22 @@ static void key_SW(void)
 
                 SET_LED0_OFF;
 			}
+            if (key14_pressed) 
+            {
+               
+                if (mode == 1)
+                        arm_hours = (arm_hours + 1) % 24;
+                else if (mode == 2)
+                        arm_minutes = (arm_minutes + 1) % 60;
+
+                SET_LED0_OFF;
+			}
+            buzzer_bip(200);
             break;
          
             case KEY_8://DOWN TIME
-            if (key1_pressed || key14_pressed) 
+            if (key1_pressed) 
             {
-                uint8_t mode = key1_pressed ? key1_count : key14_count;
-
                 if (mode == 1)
                     hours = (hours == 0) ? 23 : hours - 1;
                 else if (mode == 2)
@@ -114,7 +133,18 @@ static void key_SW(void)
 
                 SET_LED0_ON;
             }
+            if (key14_pressed) 
+            {
+               
+                if (mode == 1)
+                        arm_hours = (arm_hours + 1) % 24;
+                else if (mode == 2)
+                        arm_minutes = (arm_minutes + 1) % 60;
 
+                SET_LED0_OFF;
+                
+			}
+            buzzer_bip(200);
             break;
 
             case KEY_14:
@@ -131,7 +161,9 @@ static void key_SW(void)
                 }
 
                 blink_led0_active = 1;
+                 buzzer_bip(200);
             }
+           
             break;
 
 
@@ -197,28 +229,54 @@ static void clock_update(void)
 }
 static void normal_clock()
 {
-    Digital_DisplayDEC(hours * 100 + minutes);
+    if (key14_pressed && !key1_pressed)
+        Digital_DisplayDEC(arm_hours * 100 + arm_minutes); // Hiển thị hẹn giờ khi đang nhấn SW14
+    else
+        Digital_DisplayDEC(hours * 100 + minutes);         // Hiển thị đồng hồ bình thường
 }
+
 static void scan_moude()
 {
-if(timer_1ms_flag)
-{
-    timer_1ms_flag = 0;
-    Digital_Scan();
-    key_code = KeyScan();
-   // key_val  = read_key & 0xFF;
-	  read_key = key_code;
-		if(key1_count==2)
-			{
-         if(blink_led0_active)
+    if(timer_1ms_flag)
+    {
+        timer_1ms_flag = 0;
+        Digital_Scan();
+        key_code = KeyScan();
+        buzzer_update();
+        // key_val  = read_key & 0xFF;
+        read_key = key_code;
+        time_out();
+        if(key1_count==2)
+        {
+        if(blink_led0_active)
             {
-            led_blink_update(0, 500); // Nháy 0.5s
-              }
-							 }
-}
+                led_blink_update(0, 500); // Nháy 0.5s
+            }
+        }
+
+    }
 }
 
-
+static void time_out()
+{
+            if (key1_pressed || key14_pressed)
+        {
+            key_timeout_counter++;
+            if (key_timeout_counter >= KEY_TIMEOUT_MS)
+            {
+                key1_pressed = 0;
+                key14_pressed = 0;
+                key1_count = 0;
+                key14_count = 0;
+                //blink_led0_active = 0;
+                key_timeout_counter = 0;
+            }
+        }
+        else
+        {
+            key_timeout_counter = 0; // reset khi không ở trong chế độ
+        }
+}
 
 /*---------------------------INIT/ MAIN------------------------------------------*/
 
@@ -234,6 +292,7 @@ clock_update();
 normal_clock();
 scan_moude();
 key_SW();
+	
    // handle_button_press();
 }
 #endif

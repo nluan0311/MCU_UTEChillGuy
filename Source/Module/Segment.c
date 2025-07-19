@@ -121,7 +121,7 @@ void Digital_Scan(void)
 	//COM pin change
 	com_scan++;
 	if(com_scan >= 4)											//COM0~COM3 
-		com_scan = 0;
+	com_scan = 0;
 	
 	//set COM pin output high
 	switch(com_scan)
