@@ -1,3 +1,23 @@
+/*
+ * Project      : MCU V2 - Digital Clock Controller
+ * Author       : Tran Nam
+ * Date         : 20/07/2025
+ * Email        : trannam6362@gmail.com
+ * Version      : 2.0
+ *
+ * Description  : 
+ * This source file is part of the digital clock system for SN8F5708_EVK / SN32F407_EVK.
+ * It handles normal timekeeping, setup modes, alarm scheduling, and hardware control
+ * including LED 7-segment display, buzzer, and flash memory storage.
+ *
+ * Notes        :
+ * - Press SW3 to switch between hour/minute settings.
+ * - Press SW16 to set alarm time, saved in FLASH.
+ * - SW6/SW10 increase/decrease time values, with wrap-around logic.
+ * - Timeout after 30s returns to normal mode.
+ * - Buzzer and LED provide feedback on user interaction.
+ */
+
 /******************************************************/
 #include "..\Driver\GPIO.h"
 #include "..\Driver\CT16B0.h"
@@ -16,15 +36,6 @@
 static uint16_t key_timeout_counter = 0;
 #define KEY_TIMEOUT_MS 30000
 
-/**************************Clock***********************/
-static uint32_t  led_timer     = 0;    // couter LED
-static uint32_t  beep_timer    = 0;    // couter beep
-static uint8_t   beep_active   = 0;     
-static uint8_t   led_active    = 0;
-static uint32_t  led_duration_ms = 3000; //
-/************************************************************/
-static uint8_t   up = 0;
-static uint8_t   down = 0;
 /**************************Clock***********************/
 static uint8_t   hours   = 23;
 static uint8_t   minutes = 59;
@@ -259,23 +270,23 @@ static void scan_moude()
 
 static void time_out()
 {
-            if (key1_pressed || key14_pressed)
+    if (key1_pressed || key14_pressed)
+    {
+        key_timeout_counter++;
+        if (key_timeout_counter >= KEY_TIMEOUT_MS)
         {
-            key_timeout_counter++;
-            if (key_timeout_counter >= KEY_TIMEOUT_MS)
-            {
-                key1_pressed = 0;
-                key14_pressed = 0;
-                key1_count = 0;
-                key14_count = 0;
-                //blink_led0_active = 0;
-                key_timeout_counter = 0;
-            }
+            key1_pressed = 0;
+            key14_pressed = 0;
+            key1_count = 0;
+            key14_count = 0;
+            //blink_led0_active = 0;
+            key_timeout_counter = 0;
         }
-        else
-        {
-            key_timeout_counter = 0; // reset khi không ở trong chế độ
-        }
+    }
+    else
+    {
+        key_timeout_counter = 0; // reset khi không ở trong chế độ
+    }
 }
 
 /*---------------------------INIT/ MAIN------------------------------------------*/
