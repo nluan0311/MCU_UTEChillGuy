@@ -14,8 +14,8 @@ Base Address: 0x4000 0000 (CT16B0)
 																					//[0:0] Counter enable bit
 #define	CT16_CEN_DIS 								0			//Enable
 #define	CT16_CEN_EN  								1			//Disable
-#define mskCT16_CEN_DIS							(CT16_CEN_DIS << 0)
-#define	mskCT16_CEN_EN  						(CT16_CEN_EN << 0)
+#define mskCT16_CEN_DIS						    	(CT16_CEN_DIS << 0)
+#define	mskCT16_CEN_EN  						    (CT16_CEN_EN << 0)
 
 																					//[1:1] Counter reset bit
 #define	CT16_CRST 									1			
@@ -24,25 +24,25 @@ Base Address: 0x4000 0000 (CT16B0)
 																					//[6:4] Counting mode selection 
 #define CT16_CM_EDGE_UP							0			//Edge-aligned Up-counting mode
 #define CT16_CM_EDGE_DOWN						1			//Edge-aligned Down-counting mode
-#define CT16_CM_CENTER_DOWN					2			//Center-aligned mode 1. Match interrupt is set during down-counting period
+#define CT16_CM_CENTER_DOWN					    2			//Center-aligned mode 1. Match interrupt is set during down-counting period
 #define CT16_CM_CENTER_UP						4			//Center-aligned mode 2. Match interrupt is set during up-counting period
-#define CT16_CM_CENTER_BOTH					6			//Center-aligned mode 3. Match interrupt is set during both up and down period.
-#define mskCT16_CM_EDGE_UP					(CT16_CM_EDGE_UP << 4)		
-#define mskCT16_CM_EDGE_DOWN				(CT16_CM_EDGE_DOWN << 4)
-#define mskCT16_CM_CENTER_DOWN			(CT16_CM_CENTER_DOWN << 4)
-#define mskCT16_CM_CENTER_UP				(CT16_CM_CENTER_UP << 4)	
-#define mskCT16_CM_CENTER_BOTH			(CT16_CM_CENTER_BOTH << 4)
+#define CT16_CM_CENTER_BOTH					    6			//Center-aligned mode 3. Match interrupt is set during both up and down period.
+#define mskCT16_CM_EDGE_UP					    (CT16_CM_EDGE_UP << 4)		
+#define mskCT16_CM_EDGE_DOWN				    (CT16_CM_EDGE_DOWN << 4)
+#define mskCT16_CM_CENTER_DOWN			        (CT16_CM_CENTER_DOWN << 4)
+#define mskCT16_CM_CENTER_UP				    (CT16_CM_CENTER_UP << 4)	
+#define mskCT16_CM_CENTER_BOTH			        (CT16_CM_CENTER_BOTH << 4)
 
 /* CT16Bn Count Control register <CT16Bn_CNTCTRL> (0x10) */
 																					//[1:0] Count/Timer Mode selection.
 #define	CT16_CTM_TIMER							0			//Timer mode: Every rising PCLK edge.
-#define CT16_CTM_CNTER_RISING				1			//Counter mode: TC increments on rising edge of CAP input.
-#define CT16_CTM_CNTER_FALLING			2			//Counter mode: TC increments on falling edge of CAP input.
-#define CT16_CTM_CNTER_BOTH					3			//Counter mode: TC increments on both edge of CAP input.
+#define CT16_CTM_CNTER_RISING				    1			//Counter mode: TC increments on rising edge of CAP input.
+#define CT16_CTM_CNTER_FALLING			        2			//Counter mode: TC increments on falling edge of CAP input.
+#define CT16_CTM_CNTER_BOTH					    3			//Counter mode: TC increments on both edge of CAP input.
 #define	mskCT16_CTM_TIMER						(CT16_CTM_TIMER << 0)		
-#define mskCT16_CTM_CNTER_RISING		(CT16_CTM_CNTER_RISING << 0)		
-#define mskCT16_CTM_CNTER_FALLING		(CT16_CTM_CNTER_FALLING << 0)		
-#define mskCT16_CTM_CNTER_BOTH			(CT16_CTM_CNTER_BOTH << 0)		
+#define mskCT16_CTM_CNTER_RISING		        (CT16_CTM_CNTER_RISING << 0)		
+#define mskCT16_CTM_CNTER_FALLING		        (CT16_CTM_CNTER_FALLING << 0)		
+#define mskCT16_CTM_CNTER_BOTH			        (CT16_CTM_CNTER_BOTH << 0)		
 
 /* CT16Bn Match Control register <CT16Bn_MCTRL> (0x14) */
 #define	CT16_MRnIE_EN								1
@@ -58,11 +58,11 @@ Base Address: 0x4000 0000 (CT16B0)
 
 																					//[1:1] Enable reset TC when MR0 matches TC.
 #define mskCT16_MR0RST_EN						(CT16_MRnRST_EN << 1)
-#define mskCT16_MR0RST_DIS					(CT16_MRnRST_DIS << 1)
+#define mskCT16_MR0RST_DIS				    	(CT16_MRnRST_DIS << 1)
 
 																					//[2:2] Enable stop TC and clear CEN when MR0 matches TC.
-#define mskCT16_MR0STOP_EN					(CT16_MRnSTOP_EN << 2)
-#define mskCT16_MR0STOP_DIS					(CT16_MRnSTOP_DIS << 2)
+#define mskCT16_MR0STOP_EN				    	(CT16_MRnSTOP_EN << 2)
+#define mskCT16_MR0STOP_DIS				    	(CT16_MRnSTOP_DIS << 2)
 
 																					//[3:3] Enable MR1 match interrupt
 #define mskCT16_MR1IE_EN						(CT16_MRnIE_EN << 3)
@@ -70,11 +70,11 @@ Base Address: 0x4000 0000 (CT16B0)
 
 																					//[4:4] Enable reset TC when MR1 matches TC.
 #define mskCT16_MR1RST_EN						(CT16_MRnRST_EN << 4)
-#define mskCT16_MR1RST_DIS					(CT16_MRnRST_DIS << 4)
+#define mskCT16_MR1RST_DIS					    (CT16_MRnRST_DIS << 4)
 
 																					//[5:5] Enable stop TC and clear CEN when MR1 matches TC.	
-#define mskCT16_MR1STOP_EN					(CT16_MRnSTOP_EN << 5)
-#define mskCT16_MR1STOP_DIS					(CT16_MRnSTOP_DIS << 5)
+#define mskCT16_MR1STOP_EN					    (CT16_MRnSTOP_EN << 5)
+#define mskCT16_MR1STOP_DIS					    (CT16_MRnSTOP_DIS << 5)
 
 																					//[6:6] Enable MR2 match interrupt
 #define mskCT16_MR2IE_EN						(CT16_MRnIE_EN << 6)
@@ -82,11 +82,11 @@ Base Address: 0x4000 0000 (CT16B0)
 
 																					//[7:7] Enable reset TC when MR2 matches TC.
 #define mskCT16_MR2RST_EN						(CT16_MRnRST_EN << 7)
-#define mskCT16_MR2RST_DIS					(CT16_MRnRST_DIS << 7)
+#define mskCT16_MR2RST_DIS					    (CT16_MRnRST_DIS << 7)
 
 																					//[8:8] Enable stop TC and clear CEN when MR2 matches TC.
-#define mskCT16_MR2STOP_EN					(CT16_MRnSTOP_EN << 8)
-#define mskCT16_MR2STOP_DIS					(CT16_MRnSTOP_DIS << 8)
+#define mskCT16_MR2STOP_EN				     	(CT16_MRnSTOP_EN << 8)
+#define mskCT16_MR2STOP_DIS					    (CT16_MRnSTOP_DIS << 8)
 
 																					//[9:9] Enable MR3 match interrupt
 #define mskCT16_MR3IE_EN						(CT16_MRnIE_EN << 9)
@@ -94,11 +94,11 @@ Base Address: 0x4000 0000 (CT16B0)
 
 																					//[10:10] Enable reset TC when MR3 matches TC.		
 #define mskCT16_MR3RST_EN						(CT16_MRnRST_EN << 10)
-#define mskCT16_MR3RST_DIS					(CT16_MRnRST_DIS << 10)
+#define mskCT16_MR3RST_DIS					    (CT16_MRnRST_DIS << 10)
 
 																					//[11:11] Enable stop TC and clear CEN when MR3 matches TC.
-#define mskCT16_MR3STOP_EN					(CT16_MRnSTOP_EN << 11)
-#define mskCT16_MR3STOP_DIS					(CT16_MRnSTOP_DIS << 11)
+#define mskCT16_MR3STOP_EN				    	(CT16_MRnSTOP_EN << 11)
+#define mskCT16_MR3STOP_DIS					    (CT16_MRnSTOP_DIS << 11)
 
 																					//[29:29] Enable MR9 match interrupt
 #define mskCT16_MR9IE_EN						(CT16_MRnIE_EN << 29)
@@ -106,11 +106,11 @@ Base Address: 0x4000 0000 (CT16B0)
 
 																					//[30:30] Enable reset TC when MR9 matches TC.
 #define mskCT16_MR9RST_EN						(CT16_MRnRST_EN << 30)
-#define mskCT16_MR9RST_DIS					(CT16_MRnRST_DIS << 30)
+#define mskCT16_MR9RST_DIS					    (CT16_MRnRST_DIS << 30)
 
 																					//[31:31] Enable stop TC and clear CEN when MR9 matches TC.
-#define mskCT16_MR9STOP_EN					(CT16_MRnSTOP_EN << 31)
-#define mskCT16_MR9STOP_DIS					(CT16_MRnSTOP_DIS << 31)
+#define mskCT16_MR9STOP_EN					    (CT16_MRnSTOP_EN << 31)
+#define mskCT16_MR9STOP_DIS					    (CT16_MRnSTOP_DIS << 31)
 
 
 /* CT16Bn Capture Control register <CT16Bn_CAPCTRL> (0x28) */
@@ -118,25 +118,25 @@ Base Address: 0x4000 0000 (CT16B0)
 #define	CT16_CAP0RE_EN							1		
 #define	CT16_CAP0RE_DIS							0
 #define mskCT16_CAP0RE_EN						(CT16_CAP0RE_EN << 0)
-#define mskCT16_CAP0RE_DIS					(CT16_CAP0RE_DIS << 0)
+#define mskCT16_CAP0RE_DIS					    (CT16_CAP0RE_DIS << 0)
 
 																					//[1:1] Enable CAP0 capture on fallng edge.
 #define	CT16_CAP0FE_EN							1		
 #define	CT16_CAP0FE_DIS							0
 #define mskCT16_CAP0FE_EN						(CT16_CAP0FE_EN << 1)
-#define mskCT16_CAP0FE_DIS					(CT16_CAP0FE_DIS << 1)
+#define mskCT16_CAP0FE_DIS					    (CT16_CAP0FE_DIS << 1)
 
 																					//[2:2] Enable CAP0 interrupt.
 #define	CT16_CAP0IE_EN							1		
 #define	CT16_CAP0IE_DIS							0
 #define mskCT16_CAP0IE_EN						(CT16_CAP0IE_EN << 2)
-#define mskCT16_CAP0IE_DIS					(CT16_CAP0IE_DIS << 2)
+#define mskCT16_CAP0IE_DIS					    (CT16_CAP0IE_DIS << 2)
 
 																					//[3:3] Enable CAP0 function.
 #define	CT16_CAP0EN_EN							1		
 #define	CT16_CAP0EN_DIS							0
 #define mskCT16_CAP0EN_EN						(CT16_CAP0EN_EN << 3)
-#define mskCT16_CAP0EN_DIS					(CT16_CAP0EN_DIS << 3)
+#define mskCT16_CAP0EN_DIS					    (CT16_CAP0EN_DIS << 3)
 
 /* CT16Bn External Match register <CT16Bn_EM> (0x30) */
 #define	CT16_EM_LOW									0			//Drive output to Low
@@ -155,34 +155,34 @@ Base Address: 0x4000 0000 (CT16B0)
 #define mskCT16_EM3_LOW							(CT16_EM_LOW << 3)
 #define mskCT16_EM3_HIGH						(CT16_EM_HIGH << 3)
 																		
-#define	CT16_EMC_DO_NOTHING					0			//Do nothing.
+#define	CT16_EMC_DO_NOTHING							0			//Do nothing.
 #define	CT16_EMC_LOW								1			//CT16Bn PWMn pin is low.
 #define	CT16_EMC_HIGH								2			//CT16Bn PWMn pin is high.
-#define	CT16_EMC_TOGGLE							3			//Toggle CT16Bn PWMn pin.
+#define	CT16_EMC_TOGGLE								3			//Toggle CT16Bn PWMn pin.
 
 																					//[5:4] CT16Bn PWM0 functionality
-#define mskCT16_EMC0_DO_NOTHING			(CT16_EMC_LOW << 4)
+#define mskCT16_EMC0_DO_NOTHING					(CT16_EMC_LOW << 4)
 #define mskCT16_EMC0_LOW						(CT16_EMC_LOW << 4)
 #define mskCT16_EMC0_HIGH						(CT16_EMC_HIGH << 4)
-#define mskCT16_EMC0_TOGGLE					(CT16_EMC_TOGGLE << 4)
+#define mskCT16_EMC0_TOGGLE						(CT16_EMC_TOGGLE << 4)
 
 																					//[7:6] CT16Bn PWM1 functionality
-#define mskCT16_EMC1_DO_NOTHING			(CT16_EMC_LOW << 6)
+#define mskCT16_EMC1_DO_NOTHING					(CT16_EMC_LOW << 6)
 #define mskCT16_EMC1_LOW						(CT16_EMC_LOW << 6)
 #define mskCT16_EMC1_HIGH						(CT16_EMC_HIGH << 6)
-#define mskCT16_EMC1_TOGGLE					(CT16_EMC_TOGGLE << 6)
+#define mskCT16_EMC1_TOGGLE						(CT16_EMC_TOGGLE << 6)
 
 																					//[9:8] CT16Bn PWM2 functionality
-#define mskCT16_EMC2_DO_NOTHING			(CT16_EMC_LOW << 8)
+#define mskCT16_EMC2_DO_NOTHING					(CT16_EMC_LOW << 8)
 #define mskCT16_EMC2_LOW						(CT16_EMC_LOW << 8)
 #define mskCT16_EMC2_HIGH						(CT16_EMC_HIGH << 8)
-#define mskCT16_EMC2_TOGGLE					(CT16_EMC_TOGGLE << 8)
+#define mskCT16_EMC2_TOGGLE						(CT16_EMC_TOGGLE << 8)
 
 																					//[11:10] CT16Bn PWM3 functionality
-#define mskCT16_EMC3_DO_NOTHING			(CT16_EMC_LOW << 10)
+#define mskCT16_EMC3_DO_NOTHING					(CT16_EMC_LOW << 10)
 #define mskCT16_EMC3_LOW						(CT16_EMC_LOW << 10)
 #define mskCT16_EMC3_HIGH						(CT16_EMC_HIGH << 10)
-#define mskCT16_EMC3_TOGGLE					(CT16_EMC_TOGGLE << 10)
+#define mskCT16_EMC3_TOGGLE						(CT16_EMC_TOGGLE << 10)
 
 
 /* CT16Bn PWM Control register <CT16Bn_PWMCTRL> (0x34) */
@@ -190,15 +190,15 @@ Base Address: 0x4000 0000 (CT16B0)
 #define	CT16_PWMnEN_EMn							0 // CT16Bn PWMn is controlled by EMn.
 
 																			//[0:0] CT16Bn PWM0 enable.
-#define mskCT16_PWM0EN_EN						(CT16_PWMnEN_EN << 0)
+#define mskCT16_PWM0EN_EN					(CT16_PWMnEN_EN << 0)
 #define mskCT16_PWM0EN_EM0					(CT16_PWMnEN_EMn << 0)
 
 																			//[1:1] CT16Bn PWM1 enable.
-#define mskCT16_PWM1EN_EN						(CT16_PWMnEN_EN << 1)
+#define mskCT16_PWM1EN_EN					(CT16_PWMnEN_EN << 1)
 #define mskCT16_PWM1EN_EM1					(CT16_PWMnEN_EMn << 1)
 
 																			//[2:2] CT16Bn PWM2 enable.
-#define mskCT16_PWM2EN_EN						(CT16_PWMnEN_EN << 2)
+#define mskCT16_PWM2EN_EN					(CT16_PWMnEN_EN << 2)
 #define mskCT16_PWM2EN_EM2					(CT16_PWMnEN_EMn << 2)
 
 																			//[3:3] CT16Bn PWM3 enable.
@@ -213,26 +213,26 @@ Base Address: 0x4000 0000 (CT16B0)
 																			//[5:4] CT16Bn PWM0 output mode.
 #define mskCT16_PWM0MODE_1					(CT16_PWMnMODE_1 << 4)
 #define mskCT16_PWM0MODE_2					(CT16_PWMnMODE_2 << 4)
-#define mskCT16_PWM0MODE_FORCE_0		(CT16_PWMnMODE_FORCE_0 << 4)
-#define mskCT16_PWM0MODE_FORCE_1		(CT16_PWMnMODE_FORCE_1 << 4)
+#define mskCT16_PWM0MODE_FORCE_0			(CT16_PWMnMODE_FORCE_0 << 4)
+#define mskCT16_PWM0MODE_FORCE_1			(CT16_PWMnMODE_FORCE_1 << 4)
 
 																			//[7:6] CT16Bn PWM1 output mode.
 #define mskCT16_PWM1MODE_1					(CT16_PWMnMODE_1 << 6)
 #define mskCT16_PWM1MODE_2					(CT16_PWMnMODE_2 << 6)
-#define mskCT16_PWM1MODE_FORCE_0		(CT16_PWMnMODE_FORCE_0 << 6)
-#define mskCT16_PWM1MODE_FORCE_1		(CT16_PWMnMODE_FORCE_1 << 6)
+#define mskCT16_PWM1MODE_FORCE_0	    	(CT16_PWMnMODE_FORCE_0 << 6)
+#define mskCT16_PWM1MODE_FORCE_1	    	(CT16_PWMnMODE_FORCE_1 << 6)
 
 																			//[9:8] CT16Bn PWM2 output mode.
 #define mskCT16_PWM2MODE_1					(CT16_PWMnMODE_1 << 8)
 #define mskCT16_PWM2MODE_2					(CT16_PWMnMODE_2 << 8)
-#define mskCT16_PWM2MODE_FORCE_0		(CT16_PWMnMODE_FORCE_0 << 8)
-#define mskCT16_PWM2MODE_FORCE_1		(CT16_PWMnMODE_FORCE_1 << 8)
+#define mskCT16_PWM2MODE_FORCE_0		    (CT16_PWMnMODE_FORCE_0 << 8)
+#define mskCT16_PWM2MODE_FORCE_1		    (CT16_PWMnMODE_FORCE_1 << 8)
 
 																			//[11:10] CT16Bn PWM3 output mode.
 #define mskCT16_PWM3MODE_1					(CT16_PWMnMODE_1 << 10)
 #define mskCT16_PWM3MODE_2					(CT16_PWMnMODE_2 << 10)
-#define mskCT16_PWM3MODE_FORCE_0		(CT16_PWMnMODE_FORCE_0 << 10)
-#define mskCT16_PWM3MODE_FORCE_1		(CT16_PWMnMODE_FORCE_1 << 10)
+#define mskCT16_PWM3MODE_FORCE_0		    (CT16_PWMnMODE_FORCE_0 << 10)
+#define mskCT16_PWM3MODE_FORCE_1		    (CT16_PWMnMODE_FORCE_1 << 10)
 
 #define	CT16_PWMnIOEN_EN						1	// PWMn pin acts as match output.
 #define	CT16_PWMnIOEN_DIS						0	// PWMn pin acts as GPIO.	
@@ -293,8 +293,8 @@ Base Address: 0x4000 0000 (CT16B0)
 #define mskCT16_MR2IC								mskCT16_MR2IF 
 #define mskCT16_MR3IF								(0x1 << 3) //[3:3] Interrupt flag for match channel 3
 #define mskCT16_MR3IC								mskCT16_MR3IF 
-#define mskCT16_CAP0IF							(0x1 << 4) //[4:4] Interrupt flag for capture channel 0
-#define mskCT16_CAP0IC							mskCT16_CAP0IF 
+#define mskCT16_CAP0IF						    	(0x1 << 4) //[4:4] Interrupt flag for capture channel 0
+#define mskCT16_CAP0IC						    	mskCT16_CAP0IF 
 #define mskCT16_MR9IF								(0x1 << 5) //[5:5] Interrupt flag for match channel 9
 #define mskCT16_MR9IC								mskCT16_MR9IF
 #define mskCT16_BRKIF								(0x1U << 31) //[31:31] Interrupt flag for Break condition
@@ -393,7 +393,7 @@ Base Address: 0x4000 0000 (CT16B0)
 #define mskCT16_BRKDB_16T						(CT16_BRKDB_16T << 4)
 #define mskCT16_BRKDB_32T						(CT16_BRKDB_32T << 4)
 #define mskCT16_BRKDB_64T						(CT16_BRKDB_64T << 4)
-#define mskCT16_BRKDB_128T					(CT16_BRKDB_128T << 4)
+#define mskCT16_BRKDB_128T				    	(CT16_BRKDB_128T << 4)
 
 																					//[30:30] Enable generating an interrupt when BRKIF = 1.
 #define	CT16_BRKIE_DIS							0	
