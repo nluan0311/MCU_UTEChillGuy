@@ -58,20 +58,20 @@ void SPI0_Init(void)
 
 	//SPI0 SEL0 setting
 	SN_SPI0->CTRL0_b.SELDIS = SPI_SELDIS_DIS; 			//Auto-SEL disable bit
-	SN_GPIO0->MODE_b.MODE1 = 1;											//SEL(P0.1) is outout high
-	__SPI0_SET_SEL0;
 
 	//SPI0 Fifo reset
 	__SPI0_FIFO_RESET;
 
-	NVIC_ClearPendingIRQ(SPI0_IRQn);
-	NVIC_EnableIRQ(SPI0_IRQn);
+//NVIC_ClearPendingIRQ(SPI0_IRQn);
+//NVIC_EnableIRQ(SPI0_IRQn);
 	
-	//__SPI0_DATA_FETCH_HIGH_SPEED;									//Enable if Freq. of SCK > 6MHz
+	__SPI0_DATA_FETCH_HIGH_SPEED;									//Enable if Freq. of SCK > 6MHz
 
 	//SPI0 enable	
 	SN_SPI0->CTRL0_b.SPIEN  = SPI_SPIEN_EN;    			//SPI enable bit	
 }
+
+
 
 /*****************************************************************************
 * Function		: SPI0_Enable
@@ -118,3 +118,19 @@ void SPI0_DMAEnable(uint32_t w_TxRxDMAEnable, uint32_t w_DMASize)
 	else
 		SN_SPI0->DMA = 0;
 }
+/*****************************************************************************
+* Function		: SPI0_RW
+* Description	: SPI0 read and write
+* Input			: dat: data to be write
+* Output		: None
+* Return		: read data
+* Note			: None
+*****************************************************************************/
+uint8_t SPI0_RW(uint8_t dat)
+{
+	SN_SPI0->DATA = dat;
+	while(SN_SPI0->STAT_b.BUSY);
+	
+	return SN_SPI0->DATA;
+}
+

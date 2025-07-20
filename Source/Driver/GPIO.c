@@ -58,6 +58,10 @@ void GPIO_Init(void)
 	SN_GPIO3->MODE_b.MODE9 = 1;	
 	SET_LED1_OFF;
 	
+	//SET P18 SPI SEL OUTPUT HIGH
+	SN_GPIO1->MODE_b.MODE8 = 1;
+	SN_GPIO1->BSET = 1 << 8;
+	
 }
 /*****************************************************************************
 * Function		: P0_IRQHandler

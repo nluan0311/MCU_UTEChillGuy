@@ -102,7 +102,7 @@ Base Address: 0x4001 C000 (SPI0)
 
 /* SPI n Clock Divider register <SPIn_CLKDIV> (0x08) */
 																		//[7:0]SPIn clock divider
-#define	SPI_DIV  								6		//MCLK/n, n = 2, 4, 6, 8, ...,512
+#define	SPI_DIV  								2		//MCLK/n, n = 2, 4, 6, 8, ...,512
 
 
 /* SPI n Status register <SPIn_STAT> (0x0C) */
@@ -236,7 +236,7 @@ Base Address: 0x4001 C000 (SPI0)
 
 
 /*_____ M A C R O S ________________________________________________________*/
-#define	__SPI0_FIFO_RESET				(SN_SPI0->CTRL0_b.FRESET = SPI_FRESET_RESET_FIFO)
+#define	__SPI0_FIFO_RESET				{SN_SPI0->CTRL0_b.FRESET = SPI_FRESET_RESET_FIFO;while(SN_SPI0->CTRL0_b.FRESET == SPI_FRESET_RESET_FIFO);}
 #define	__SPI0_CLR_SEL0					(SN_GPIO0->DATA_b.DATA1 = 0)
 #define	__SPI0_SET_SEL0					(SN_GPIO0->DATA_b.DATA1 = 1)
 
@@ -248,6 +248,6 @@ void SPI0_Init(void);
 void SPI0_Enable(void);
 void SPI0_Disable(void);
 void SPI0_DMAEnable(uint32_t, uint32_t);
-
+uint8_t SPI0_RW(uint8_t dat);
 #endif	/*__SN32F400_SPI_H*/
 

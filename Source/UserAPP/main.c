@@ -32,12 +32,12 @@
 #include "..\Driver\WDT.h"
 #include "..\Driver\ADC.h"
 #include "..\Driver\Utility.h"
-
+#include "..\Driver\SPI.h"
 /*_____I N C L U D E S  D R I V E R ____________________________________________________*/
 #include "..\Module\KeyScan.h"
 #include "..\Module\Buzzer.h"
 #include "..\Module\Segment.h"
-
+#include "..\Module\sst_flash.h"
 /*_____ I N C L U D E S M Y C O D E ____________________________________________________*/
 #include "..\main_task\main_task.h"
 /*_____ D E C L A R A T I O N S ________________________________________________________*/
@@ -53,7 +53,8 @@ void NotPinOut_GPIO_init(void);
 	#error Please install SONiX.SN32F4_DFP.0.0.18.pack or version >= 0.0.18
 #endif
 #define	PKG						SN32F407				//User SHALL modify the package on demand (SN32F407)
-
+#define	EEPROM_WRITE_ADDR			0xa0
+#define	EEPROM_READ_ADDR			0xa1	
 /*_____ M A C R O S ______________________________________________________________________*/
 
 
@@ -73,7 +74,7 @@ int	main(void)
 	SystemCoreClockUpdate();				//Must call for SN32F400, Please do NOT remove!!!
 
 	//Note: User can refer to ClockSwitch sample code to switch various HCLK if needed.
-
+  PFPA_Init();	
 
 	//1. User SHALL define PKG on demand.
 	//2. User SHALL set the status of the GPIO which are NOT pin-out to input pull-up.
@@ -88,6 +89,9 @@ int	main(void)
 	GPIO_Init();								//initial gpio
 	
 	WDT_Init();									//Set WDT reset overflow time ~ 250ms
+	
+	SPI0_Init();
+	SN_PFPA->SPI0 = 2 | 2 <<2 | 2 << 4 | 2 <<6;
 
 	CT16B0_Init();						        //driver buzzer
 	//SET P3.0 as PWM pin
@@ -96,6 +100,7 @@ int	main(void)
 
 	CT16B1_Init();	
 	CT16B5_Init();				        	//timer 1ms
+	main_task_init();
 	
 	while (1)
 	{

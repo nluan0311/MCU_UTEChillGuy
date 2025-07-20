@@ -8,8 +8,8 @@
   Source\main_task\..\Driver\CT16B1.h \
   Source\main_task\..\Driver\CT16B5.h \
   Source\main_task\..\Driver\SYS_con_drive.h \
-  Source\main_task\..\Driver\Utility.h \
+  Source\main_task\..\Driver\Utility.h Source\main_task\..\Driver\SPI.h \
   Source\main_task\..\Module\KeyScan.h \
   Source\main_task\..\Module\Buzzer.h \
   Source\main_task\..\Module\Segment.h \
-  Source\main_task\..\main_task\hand_task.h
+  Source\main_task\..\Module\sst_flash.h

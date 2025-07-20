@@ -22,8 +22,8 @@
 /*_____ D E C L A R A T I O N S ____________________________________________*/
 static uint8_t blink_led0_active = 0;
 static uint8_t blink_led1_active = 0;
-static uint8_t beep_active = 0;
-static uint16_t beep_timer = 0;
+static uint8_t beep_active       = 0;
+static uint16_t beep_timer       = 0;
 static uint16_t beep_duration_ms = 0;
 
 /*_____ D E F I N I T I O N S ______________________________________________*/
@@ -81,6 +81,8 @@ const uint16_t musical_table[] = {
 * Return		: None
 * Note			: None
 *****************************************************************************/
+
+/*_____ F U N C T I O N S __________________________________________________*/
 void set_buzzer_pitch(uint8_t pitch)
 {
 	uint8_t buff_len = sizeof(musical_table)>>1;		//16bit size, buffer length /2
@@ -97,6 +99,19 @@ void set_buzzer_pitch(uint8_t pitch)
 		SN_CT16B0->MR0 = 0;		                        //disable buzzer;
 	}
 }
+/*_____ F U N C T I O N S __________________________________________________*/
+
+
+
+
+/*****************************************************************************
+* Function     : buzzer_bip
+* Description  : Activates the buzzer for a specified duration in milliseconds
+* Input        : time_delay_ms – duration the buzzer should stay active
+* Output       : None
+* Return       : None
+* Note         : Initializes and starts Timer to generate beep signal
+*****************************************************************************/
 
 void buzzer_bip(uint16_t time_delay_ms)
 {
@@ -112,13 +127,31 @@ void buzzer_bip(uint16_t time_delay_ms)
     beep_active = 1;
     beep_duration_ms = time_delay_ms;
 }
+
+/*****************************************************************************
+* Function     : buzzer_stop
+* Description  : Stops the buzzer and disables the timer
+* Input        : None
+* Output       : None
+* Return       : None
+* Note         : Called when beep duration ends or manually turned off
+*****************************************************************************/
+
 void buzzer_stop(void)
 {
-    SN_CT16B0->TMRCTRL = 0;     // Tắt Timer – dừng buzzer
-    beep_active = 0;            // Không còn kêu nữa
-    beep_timer = 0;             // Reset thời gian đếm
+    SN_CT16B0->TMRCTRL = 0;     // stop Timer – stop buzzer
+    beep_active = 0;            // No bbip
+    beep_timer = 0;             // Reset time couter
 }
 
+/*****************************************************************************
+* Function     : buzzer_update
+* Description  : Updates the buzzer status based on elapsed time
+* Input        : None
+* Output       : None
+* Return       : None
+* Note         : Should be called regularly (e.g. in main loop or timer ISR)
+*****************************************************************************/
 void buzzer_update(void)
 {
     if (beep_active)
@@ -126,8 +159,25 @@ void buzzer_update(void)
         beep_timer++;
         if (beep_timer >= beep_duration_ms)
         {
-            buzzer_stop();   // Tắt buzzer sau khi kêu đủ thời gian
+            buzzer_stop();   // Stop buzzer after
         }
     }
 }
+
+void buzzer_on(void)
+{
+    uint16_t timer_period = (uint16_t)(HCLK_FREQ_MAIN / LOUD_BEEP_FREQ_MAIN);
+
+    SN_CT16B0->MR9 = timer_period;
+    SN_CT16B0->MR0 = timer_period >> 1;
+
+    SN_CT16B0->TMRCTRL = 0;
+    SN_CT16B0->TMRCTRL = 1;
+}
+
+void buzzer_off(void)
+{
+    SN_CT16B0->TMRCTRL = 0;
+}
+
 

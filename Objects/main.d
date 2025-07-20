@@ -6,6 +6,8 @@
   Source\UserAPP\..\Driver\GPIO.h Source\UserAPP\..\Driver\CT16B0.h \
   Source\UserAPP\..\Driver\CT16B1.h Source\UserAPP\..\Driver\CT16B5.h \
   Source\UserAPP\..\Driver\WDT.h Source\UserAPP\..\Driver\ADC.h \
-  Source\UserAPP\..\Driver\Utility.h Source\UserAPP\..\Module\KeyScan.h \
-  Source\UserAPP\..\Module\Buzzer.h Source\UserAPP\..\Module\Segment.h \
+  Source\UserAPP\..\Driver\Utility.h Source\UserAPP\..\Driver\SPI.h \
+  Source\UserAPP\..\Module\KeyScan.h Source\UserAPP\..\Module\Buzzer.h \
+  Source\UserAPP\..\Module\Segment.h \
+  Source\UserAPP\..\Module\sst_flash.h \
   Source\UserAPP\..\main_task\main_task.h
