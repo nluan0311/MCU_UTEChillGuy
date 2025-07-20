@@ -35,7 +35,7 @@
 
 //#include "..\main_task\hand_task.h"
 ///****************************MACRO***************************************/
-#define FLASH_ALARM_ADDR   0x10000  
+#define FLASH_ALARM_ADDR   0x7C00    
 
 #define KEY_TIMEOUT_MS 30000
 
@@ -113,31 +113,36 @@ void load_alarm_time_from_flash(void);
 
 void save_alarm_time_to_flash(void)
 {
-    uint8_t data[5] = {
-        0xA5,             // [0] - flag xác nhận đã từng lưu
+    uint8_t data[8] = {
+        0xA5,             // [0] - dấu hiệu xác nhận
         arm_hours,        // [1]
         arm_minutes,      // [2]
-        arm_seconds,      // [3] - nếu bạn muốn lưu thêm giây
-        0x01              // [4] - reserved hoặc status bit (có thể là enable/disable alarm)
+        arm_seconds,      // [3]
+        alarm_enable_flag,// [4]
+        0x00,             // [5] - dự phòng
+        0x00,             // [6] - dự phòng
+        0x5A              // [7] - checksum giả định (có thể tính toán sau)
     };
 
     flash_erase_sector(FLASH_ALARM_ADDR);
-    flash_write(FLASH_ALARM_ADDR, 5, data);
+    flash_write(FLASH_ALARM_ADDR, 8, data);
 }
+
 
 // Load giờ từ flash
 #if 1
 void load_alarm_time_from_flash(void)
 {
-    uint8_t data[5];  
-    flash_read(FLASH_ALARM_ADDR, 5, data);
+    uint8_t data[8];  
+    flash_read(FLASH_ALARM_ADDR, 8, data);
 
     if (data[0] == 0xA5 && IS_VALID_HOUR(data[1]) && IS_VALID_MINUTE(data[2]))
     {
-        arm_hours   = data[1];
-        arm_minutes = data[2];
-        arm_seconds = data[3];
-        alarm_enable_flag = data[4];  // nếu bạn dùng enable flag
+        arm_hours         = data[1];
+        arm_minutes       = data[2];
+        arm_seconds       = data[3];
+        alarm_enable_flag = data[4];
+        // Có thể kiểm tra checksum nếu cần
     }
     else
     {
@@ -151,8 +156,8 @@ void load_alarm_time_from_flash(void)
 
 void init_alarm_time_if_needed(void)
 {
-    uint8_t data[5];
-    flash_read(FLASH_ALARM_ADDR, 5, data);
+    uint8_t data[8];
+    flash_read(FLASH_ALARM_ADDR, 8, data);
 
     if (data[0] != 0xA5)
     {
@@ -160,11 +165,16 @@ void init_alarm_time_if_needed(void)
         data[1] = 0;
         data[2] = 0;
         data[3] = 0;
-        data[4] = 1;
+        data[4] = 1;     // Enable alarm
+        data[5] = 0;
+        data[6] = 0;
+        data[7] = 0x5A;  // giả định checksum
+
         flash_erase_sector(FLASH_ALARM_ADDR);
-        flash_write(FLASH_ALARM_ADDR, 5, data);
+        flash_write(FLASH_ALARM_ADDR, 8, data);
     }
 }
+
 
 
 
@@ -321,7 +331,7 @@ static void key_SW(void)
             }
             
             break;
-
+#if 0
             case KEY_14:
             if (!key1_pressed)
             {
@@ -369,6 +379,41 @@ if (key14_count == 3)
             }
 
             break;
+        #endif
+        case KEY_14:
+    if (!key1_pressed)
+    {
+        key14_pressed = 1;
+        key1_pressed = 0;
+        key14_count++;
+        if (key14_count == 1)
+        {
+         
+            prev_arm_hours = arm_hours;
+            prev_arm_minutes = arm_minutes;
+            blink_led0_active = 1;
+        }
+        else if (key14_count > 2)
+        {
+            
+            if (alarm_time_changed)
+            {
+                save_alarm_time_to_flash();
+                alarm_time_changed = 0;
+            }
+            key14_count = 0;
+            key14_pressed = 0;
+            blink_led0_active = 0;
+            SET_LED0_OFF;
+            led_state[0] = 0;
+        }
+        else
+        {
+            blink_led0_active = 1;
+        }
+        buzzer_bip(200);
+    }
+    break;
             default:
             break;
         }
@@ -467,7 +512,7 @@ static void led_blink()
     }
 }
 
-
+#if 0
 static void time_out()
 {
     if (key1_pressed || key14_pressed)
@@ -488,7 +533,35 @@ static void time_out()
         key_timeout_counter = 0; // reset khi không ở trong chế độ
     }
 }
-
+#endif
+static void time_out()
+{
+    if (key1_pressed || key14_pressed)
+    {
+        key_timeout_counter++;
+        if (key_timeout_counter >= KEY_TIMEOUT_MS)
+        {
+            if (key14_pressed && alarm_time_changed)
+            {
+               
+                save_alarm_time_to_flash();
+                alarm_time_changed = 0;
+            }
+            key1_pressed = 0;
+            key14_pressed = 0;
+            key1_count = 0;
+            key14_count = 0;
+            blink_led0_active = 0;
+            key_timeout_counter = 0;
+            SET_LED0_OFF;
+            led_state[0] = 0;
+        }
+    }
+    else
+    {
+        key_timeout_counter = 0; 
+    }
+}
 /*---------------------------INIT/ MAIN------------------------------------------*/
 
 void main_task_init(void) { 
@@ -499,8 +572,8 @@ void main_task_init(void) {
 //    init_alarm_time_if_needed();   // Đọc lại thời gian hẹn khi khởi động
 //	load_or_init_alarm_time();
 	    init_alarm_time_if_needed();      // Chỉ tạo dữ liệu mặc định nếu chưa có
-    load_alarm_time_from_flash();
-    alarm_active = 0;
+        load_alarm_time_from_flash();
+        alarm_active = 0;
 
 
 }
@@ -520,7 +593,11 @@ void main_task_run(void)
 				alarm_buzzer_state = 0;
 		}
 		#endif
-		    if (hours == arm_hours && minutes == arm_minutes && seconds <= 2 && !alarm_active)
+    if (alarm_enable_flag &&
+        hours == arm_hours &&
+        minutes == arm_minutes &&
+        seconds <= 1 &&
+        !alarm_active)
     {
         alarm_active = 1;
         alarm_tick_ms = 0;

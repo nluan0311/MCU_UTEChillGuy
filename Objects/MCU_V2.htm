@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\MCU_V2.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\MCU_V2.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6230001: Last Updated: Sun Jul 20 09:28:54 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6230001: Last Updated: Sun Jul 20 13:32:30 2025
 <BR><P>
 <H3>Maximum Stack Usage =         88 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -475,6 +475,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI0_RW
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;save_alarm_time_to_flash
+<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main_task_run
 <LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main_task_init
 </UL>
 
@@ -486,12 +487,13 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main_task_init
 </UL>
 
-<P><STRONG><a name="[3b]"></a>flash_write</STRONG> (Thumb, 284 bytes, Stack size 40 bytes, sst_flash.o(.text.flash_write))
-<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = flash_write
+<P><STRONG><a name="[3b]"></a>flash_write</STRONG> (Thumb, 200 bytes, Stack size 32 bytes, sst_flash.o(.text.flash_write))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = flash_write
 </UL>
 <BR>[Calls]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI0_RW
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;save_alarm_time_to_flash
+<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main_task_run
 <LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main_task_init
 </UL>
 
@@ -513,8 +515,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[44]"></a>main_task_init</STRONG> (Thumb, 120 bytes, Stack size 32 bytes, main_task.o(.text.main_task_init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = main_task_init &rArr; flash_write
+<P><STRONG><a name="[44]"></a>main_task_init</STRONG> (Thumb, 132 bytes, Stack size 24 bytes, main_task.o(.text.main_task_init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = main_task_init &rArr; flash_read
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;flash_read
 <LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;flash_write
@@ -523,11 +525,13 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[29]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[45]"></a>main_task_run</STRONG> (Thumb, 760 bytes, Stack size 24 bytes, main_task.o(.text.main_task_run))
+<P><STRONG><a name="[45]"></a>main_task_run</STRONG> (Thumb, 896 bytes, Stack size 32 bytes, main_task.o(.text.main_task_run))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = main_task_run &rArr; save_alarm_time_to_flash &rArr; flash_write
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
 <LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;save_alarm_time_to_flash
+<LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;flash_write
+<LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;flash_erase_sector
 <LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Digital_DisplayDEC
 <LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KeyScan
 <LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buzzer_off
@@ -539,8 +543,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[29]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[4a]"></a>save_alarm_time_to_flash</STRONG> (Thumb, 56 bytes, Stack size 24 bytes, main_task.o(.text.save_alarm_time_to_flash))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = save_alarm_time_to_flash &rArr; flash_write
+<P><STRONG><a name="[4a]"></a>save_alarm_time_to_flash</STRONG> (Thumb, 68 bytes, Stack size 24 bytes, main_task.o(.text.save_alarm_time_to_flash))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = save_alarm_time_to_flash &rArr; flash_write
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;flash_write
 <LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;flash_erase_sector

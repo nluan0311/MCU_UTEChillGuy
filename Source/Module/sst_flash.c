@@ -165,49 +165,37 @@ void flash_erase_sector(uint32_t adr)
 * Return		: None
 * Note			: None
 *****************************************************************************/
-void flash_write(uint32_t adr,uint16_t len,uint8_t *buff)
+void flash_write(uint32_t adr, uint16_t len, uint8_t *buff)
 {
+	uint16_t i;
+
 	flash_wait_ready();
-	flash_enable_write_status();	//enable write status
-	flash_write_status(0);				//clear status
+	
+	flash_enable_write_status();
+	flash_write_status(0);
 	
 	flash_write_enable();
 	
-	//address must be aligent with 2byte
-	adr = adr & ~(0x01);
-	
-	//set write cmd and write address
-	__IO_SEL_LOW
-	SPI0_RW(ADDR_AUTO_INC_WRITE_CMD);
-	
-	SPI0_RW(adr>>16);
-	SPI0_RW(adr>>	8);
-	SPI0_RW(adr&0xFF);
-	
-	SPI0_RW(*buff++);
-	SPI0_RW(*buff++);	
 
-	__IO_SEL_HIGH
+	__IO_SEL_LOW;
 	
+
+	SPI0_RW(0x02);
+
+	SPI0_RW(adr >> 16);
+	SPI0_RW(adr >> 8);
+	SPI0_RW(adr & 0xFF);
 	
-	len = (len+1)>>1;		//avoid len bit0 = 1
-	
-	len--;							//have been write 2byte
-	while(len--)
+	for (i = 0; i < len; i++)
 	{
-		flash_wait_ready();
-		__IO_SEL_LOW
-		SPI0_RW(0xad);
-		SPI0_RW(*buff++);
-		SPI0_RW(*buff++);
-		__IO_SEL_HIGH
-		
+		SPI0_RW(buff[i]);
 	}
 	
-	flash_wait_ready();
-	flash_write_disable();
 	__IO_SEL_HIGH;
 	
+	flash_wait_ready();
+	
+	flash_write_disable();
 }
 
 /*****************************************************************************
