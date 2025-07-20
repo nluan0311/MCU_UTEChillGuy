@@ -1,12 +1,14 @@
 /******************** (C) COPYRIGHT 2021 SONiX *******************************
-* COMPANY:	SONiX
-* DATE:			2023/11
-* AUTHOR:		SA1
-* IC:				SN32F400
+* COMPANY:   SONiX
+* DATE:      2025/07
+* AUTHOR:    namne1204
+* GITHUB:    https://github.com/namne1204
+* IC:        SN32F400
 *____________________________________________________________________________
-*	REVISION	Date				User		Description
-*	1.0				2023/11/07	SA1			1. First version released
-*																
+*    REVISION       Date         User         Description
+*    1.1           2025/07/17    namne1204    1. Refactored decimal/hex display logic
+*                                             2. Enhanced segment error handling (over 9999)
+*                                             3. Reviewed COM pin scan switch for clarity
 *____________________________________________________________________________
 * THE PRESENT SOFTWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
 * WITH CODING INFORMATION REGARDING THEIR PRODUCTS TIME TO MARKET.
@@ -15,6 +17,7 @@
 * AND/OR THE USE MADE BY CUSTOMERS OF THE CODING INFORMATION CONTAINED HEREIN 
 * IN CONNECTION WITH THEIR PRODUCTS.
 *****************************************************************************/
+
 
 /*_____ I N C L U D E S ____________________________________________________*/
 #include "Segment.h"
@@ -44,9 +47,9 @@ const uint8_t SEGMENT_TABLE[] = {
 	(SEG_A|SEG_B|SEG_C|SEG_D|SEG_E|SEG_F|SEG_G),									//8
 	(SEG_A|SEG_B|SEG_C|SEG_D|SEG_F|SEG_G),											//9
 	(SEG_A|SEG_B|SEG_C|SEG_E|SEG_F|SEG_G),											//A
-	(SEG_C|SEG_D|SEG_E|SEG_F|SEG_G),												//b
+	(SEG_C|SEG_D|SEG_E|SEG_F|SEG_G),												//B
 	(SEG_A|SEG_D|SEG_E|SEG_F),														//C
-	(SEG_B|SEG_C|SEG_D|SEG_E|SEG_G),												//d
+	(SEG_B|SEG_C|SEG_D|SEG_E|SEG_G),												//D
 	(SEG_A|SEG_D|SEG_E|SEG_F|SEG_G),												//E
 	(SEG_A|SEG_E|SEG_F|SEG_G),														//F
 	(SEG_A|SEG_E|SEG_F|SEG_G),														//unknow

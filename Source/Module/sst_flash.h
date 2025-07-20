@@ -4,8 +4,8 @@
 /*_____ I N C L U D E S ____________________________________________________*/
 #include <stdint.h>
 /*_____ D E F I N I T I O N S ______________________________________________*/
-#define	FLASH_READ_CMD								0x03
-#define	FLASH_HIGN_SPEED_READ_CMD			0x0B
+#define	FLASH_READ_CMD							0x03
+#define	FLASH_HIGN_SPEED_READ_CMD			    0x0B
 
 #define	FLASH_ERASE_4K_CMD						0x20
 #define	FLASH_ERASE_32K_CMD						0x52
@@ -14,17 +14,17 @@
 
 
 
-#define	WRITE_BYTE_CMD								0x02
-#define	ADDR_AUTO_INC_WRITE_CMD				0xAD
+#define	WRITE_BYTE_CMD							0x02
+#define	ADDR_AUTO_INC_WRITE_CMD				    0xAD
 
 #define	FLASH_READ_STATUS_CMD					0x05
-#define	FLASH_EN_WRITE_STATUS_CMD			0x50
-#define	FLASH_WRITE_STATUS_CMD				0x01
+#define	FLASH_EN_WRITE_STATUS_CMD			    0x50
+#define	FLASH_WRITE_STATUS_CMD				    0x01
 
 #define	FLASH_EN_WRITE_CMD						0x06
 #define	FLASH_DIS_WRITE_CMD						0x04
 
-#define	FLASH_READ_ID_CMD							0x90
+#define	FLASH_READ_ID_CMD						0x90
 
 
 

@@ -54,21 +54,21 @@ uint16_t KeyScan(void)
 		SN_GPIO2->MODE &= ~(0xf << 4);	//SN_GPIO2->MODE = SN_GPIO2->MODE & 0x3f0f;  		set P24~P27 input mode
 		SN_GPIO2->CFG &= ~(0xff << 8);	//SN_GPIO2->CFG = SN_GPIO2->CFG & 0x0fff00ff;		set P24~P27 pull up 
 		//2. set row output low
-		SN_GPIO1->MODE |= 0xf << 4;			//set P14~P17 output
+		SN_GPIO1->MODE |= 0xf << 4;		//set P14~P17 output
 		SN_GPIO1->BCLR = 0xf << 4;
 		//delay to wait gpio level stable
 		UT_DelayNx10us(1);
 		
-		key_col = (SN_GPIO2->DATA >> 4) & 0xf;		//read P24~P27,at key_col bit0~bit3
+		key_col = (SN_GPIO2->DATA >> 4) & 0xf;					//read P24~P27,at key_col bit0~bit3
 		
 		if(key_col)												// occur key push
 		{
 		//read row			
 			//1. set row input pull up
-			SN_GPIO1->MODE &= ~(0xf << 4);	//SN_GPIO1->MODE = SN_GPIO2->MODE & 0x3f0f;  		set P24~P27 input mode
-			SN_GPIO1->CFG &= ~(0xff << 8);	//SN_GPIO1->CFG = SN_GPIO2->CFG & 0x0fff00ff;		set P24~P27 pull up 
+			SN_GPIO1->MODE &= ~(0xf << 4);			//SN_GPIO1->MODE = SN_GPIO2->MODE & 0x3f0f;  		set P24~P27 input mode
+			SN_GPIO1->CFG &= ~(0xff << 8);			//SN_GPIO1->CFG = SN_GPIO2->CFG & 0x0fff00ff;		set P24~P27 pull up 
 			//2. set row output low
-			SN_GPIO2->MODE |= 0xf << 4;			//set P24~P27 output
+			SN_GPIO2->MODE |= 0xf << 4;				//set P24~P27 output
 			SN_GPIO2->BCLR = 0xf << 4;
 			//delay to wait gpio level stable
 			UT_DelayNx10us(1);
@@ -77,37 +77,37 @@ uint16_t KeyScan(void)
 			
 			key = key_col | key_row;
 			
-			key ^= 0xff;											//inverse to read push key's flag;
+			key ^= 0xff;							//inverse to read push key's flag;
 			
 		}
-		else																	//key idle
+		else										//key idle
 		{
-			key = 0;													//none key push
+			key = 0;								//none key push
 		}
 
 
-	if(key != key_check)									// key action change
+	if(key != key_check)							// key action change
 	{						
 		key_check = key;												
 		key_debounce = 0;											
 	}
 	
-	else if(key_debounce < KEY_DEBOUNCE_MAX_TIME)			//key debounce
+	else if(key_debounce < KEY_DEBOUNCE_MAX_TIME)	//key debounce
 	{
 		key_debounce++;
 	
-		if(key_debounce == KEY_SHORT_PUSH_TIME)					//short key action
+		if(key_debounce == KEY_SHORT_PUSH_TIME)							//short key action
 		{
 			key = key_check ^ key_cvt;							
 			key_cvt = key_check;
 			
-			if(key)																// key flag have been change
+			if(key)														// key flag have been change
 			{
 				if(key & key_check)										//key push
 				{
 					key_action = KEY_PUSH_FLAG | (key & key_check);
 				}
-				else 																	//key pop
+				else 													//key pop
 				{
 					key_action = KEY_POP_FLAG | key;
 				}				

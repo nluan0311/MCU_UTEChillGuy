@@ -1,12 +1,14 @@
 /******************** (C) COPYRIGHT 2021 SONiX *******************************
-* COMPANY:	SONiX
-* DATE:	    2023/11
-* AUTHOR:	SA1
-* IC:				SN32F400
+* COMPANY:   SONiX
+* DATE:      2025/07
+* AUTHOR:    namne1204
+* GITHUB:    https://github.com/namne1204
+* IC:        SN32F400
 *____________________________________________________________________________
-*	REVISION	    Date				    User		Description
-*	1.0				2023/11/07	SA1			1. First version released
-*																
+*    REVISION       Date         User          Description
+*    1.1            2025/07/17   namne1204     1. Refactor buzzer functions for clarity
+*                                              2. Updated beep timing logic
+*                                              3. Minor macro naming improvements
 *____________________________________________________________________________
 * THE PRESENT SOFTWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
 * WITH CODING INFORMATION REGARDING THEIR PRODUCTS TIME TO MARKET.
@@ -15,6 +17,7 @@
 * AND/OR THE USE MADE BY CUSTOMERS OF THE CODING INFORMATION CONTAINED HEREIN 
 * IN CONNECTION WITH THEIR PRODUCTS.
 *****************************************************************************/
+
 
 /*_____ I N C L U D E S ____________________________________________________*/
 #include "Buzzer.h"

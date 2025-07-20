@@ -25,28 +25,26 @@
 /*_____ I N C L U D E S _______________________________________________________________*/
 #include <SN32F400.h>
 #include <SN32F400_Def.h>
+
+#include "..\Driver\WDT.h"
+#include "..\Driver\ADC.h"
+#include "..\Driver\SPI.h"
 #include "..\Driver\GPIO.h"
 #include "..\Driver\CT16B0.h"
 #include "..\Driver\CT16B1.h"
 #include "..\Driver\CT16B5.h"
-#include "..\Driver\WDT.h"
-#include "..\Driver\ADC.h"
 #include "..\Driver\Utility.h"
-#include "..\Driver\SPI.h"
 /*_____I N C L U D E S  D R I V E R ____________________________________________________*/
-#include "..\Module\KeyScan.h"
 #include "..\Module\Buzzer.h"
+#include "..\Module\KeyScan.h"
 #include "..\Module\Segment.h"
 #include "..\Module\sst_flash.h"
 /*_____ I N C L U D E S M Y C O D E ____________________________________________________*/
 #include "..\main_task\main_task.h"
 /*_____ D E C L A R A T I O N S ________________________________________________________*/
+
 void PFPA_Init(void);
 void NotPinOut_GPIO_init(void);
-//uint16_t read_key;
-//uint16_t key_code;
-//uint8_t key_val;
-//uint16_t led_timer = 0;
 
 /*_____ D E F I N I T I O N S ___________________________________________________________*/
 #ifndef	SN32F407					//Do NOT Remove or Modify!!!
@@ -68,7 +66,6 @@ void NotPinOut_GPIO_init(void);
 *****************************************************************************/
 int	main(void)
 {
-	//uint8_t i;
 	//User can configure System Clock with Configuration Wizard in system_SN32F400.c
 	SystemInit();
 	SystemCoreClockUpdate();				//Must call for SN32F400, Please do NOT remove!!!
@@ -99,7 +96,7 @@ int	main(void)
 
 
 	CT16B1_Init();	
-	CT16B5_Init();				        	//timer 1ms
+	CT16B5_Init();				        		//timer 1ms
 	main_task_init();
 	
 	while (1)
@@ -110,8 +107,8 @@ int	main(void)
 	}
 }
 /*****************************************************************************
-* Function		: NotPinOut_GPIO_init
-* Description	: Set the status of the GPIO which are NOT pin-out to input pull-up. 
+* Function			: NotPinOut_GPIO_init
+* Description		: Set the status of the GPIO which are NOT pin-out to input pull-up. 
 * Input				: None
 * Output			: None
 * Return			: None
