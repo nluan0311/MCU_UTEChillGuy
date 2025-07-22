@@ -1,6 +1,6 @@
 Dependencies for Project 'MCU_V2', Target 'Target 1': (DO NOT MODIFY !)
 CompilerVersion: 6140000::V6.14::ARMCLANG
-F (.\Source\UserAPP\main.c)(0x687EEE32)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ./Source/main_task-I./RTE/_Target_1-ID:/KeilC/ARM/CMSIS/5.7.0/CMSIS/Core/Include-ID:/KeilC/SONiX/SN32F4_DFP/1.0.1/Device/Include-D__UVISION_VERSION="538" -D_RTE_ -DSN32F400 -D_RTE_-o ./objects/main.o -MD)
+F (.\Source\UserAPP\main.c)(0x687EF4D8)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ./Source/main_task-I./RTE/_Target_1-ID:/KeilC/ARM/CMSIS/5.7.0/CMSIS/Core/Include-ID:/KeilC/SONiX/SN32F4_DFP/1.0.1/Device/Include-D__UVISION_VERSION="538" -D_RTE_ -DSN32F400 -D_RTE_-o ./objects/main.o -MD)
 I (D:\KeilC\SONiX\SN32F4_DFP\1.0.1\Device\Include\SN32F400.h)(0x66162B34)
 I (D:\KeilC\ARM\CMSIS\5.7.0\CMSIS\Core\Include\core_cm0.h)(0x5E8EDF32)
 I (D:\KeilC\ARM\ARMCLANG\include\stdint.h)(0x5ED619F4)
@@ -23,7 +23,7 @@ I (Source\UserAPP\..\Module\Buzzer.h)(0x687EEE32)
 I (Source\UserAPP\..\Module\KeyScan.h)(0x687EEE32)
 I (Source\UserAPP\..\Module\Segment.h)(0x687EEE32)
 I (Source\UserAPP\..\Module\sst_flash.h)(0x687EEE32)
-I (Source\UserAPP\..\main_task\main_task.h)(0x687EF270)
+I (Source\UserAPP\..\main_task\main_task.h)(0x687EF4E5)
 F (.\Source\Driver\GPIO.c)(0x687EEE32)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ./Source/main_task-I./RTE/_Target_1-ID:/KeilC/ARM/CMSIS/5.7.0/CMSIS/Core/Include-ID:/KeilC/SONiX/SN32F4_DFP/1.0.1/Device/Include-D__UVISION_VERSION="538" -D_RTE_ -DSN32F400 -D_RTE_-o ./objects/gpio.o -MD)
 I (Source\Driver\GPIO.h)(0x687EEE32)
 I (D:\KeilC\SONiX\SN32F4_DFP\1.0.1\Device\Include\SN32F400.h)(0x66162B34)
@@ -121,7 +121,7 @@ I (D:\KeilC\ARM\CMSIS\5.7.0\CMSIS\Core\Include\cmsis_armclang.h)(0x5E8EDF32)
 I (D:\KeilC\ARM\ARMCLANG\include\arm_compat.h)(0x5E0CD0FC)
 I (D:\KeilC\ARM\ARMCLANG\include\arm_acle.h)(0x5E0CD128)
 I (D:\KeilC\SONiX\SN32F4_DFP\1.0.1\Device\Include\system_SN32F400.h)(0x623C3E8E)
-F (.\Source\Module\Buzzer.c)(0x687EEE32)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ./Source/main_task-I./RTE/_Target_1-ID:/KeilC/ARM/CMSIS/5.7.0/CMSIS/Core/Include-ID:/KeilC/SONiX/SN32F4_DFP/1.0.1/Device/Include-D__UVISION_VERSION="538" -D_RTE_ -DSN32F400 -D_RTE_-o ./objects/buzzer.o -MD)
+F (.\Source\Module\Buzzer.c)(0x687EF4E4)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ./Source/main_task-I./RTE/_Target_1-ID:/KeilC/ARM/CMSIS/5.7.0/CMSIS/Core/Include-ID:/KeilC/SONiX/SN32F4_DFP/1.0.1/Device/Include-D__UVISION_VERSION="538" -D_RTE_ -DSN32F400 -D_RTE_-o ./objects/buzzer.o -MD)
 I (Source\Module\Buzzer.h)(0x687EEE32)
 I (D:\KeilC\SONiX\SN32F4_DFP\1.0.1\Device\Include\SN32F400.h)(0x66162B34)
 I (D:\KeilC\ARM\CMSIS\5.7.0\CMSIS\Core\Include\core_cm0.h)(0x5E8EDF32)
@@ -134,7 +134,7 @@ I (D:\KeilC\ARM\ARMCLANG\include\arm_acle.h)(0x5E0CD128)
 I (D:\KeilC\SONiX\SN32F4_DFP\1.0.1\Device\Include\system_SN32F400.h)(0x623C3E8E)
 I (Source\Module\..\Driver\CT16B0.h)(0x687EEE32)
 I (D:\KeilC\SONiX\SN32F4_DFP\1.0.1\Device\Include\SN32F400_Def.h)(0x623C3E5C)
-F (.\Source\Module\KeyScan.c)(0x687EEE32)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ./Source/main_task-I./RTE/_Target_1-ID:/KeilC/ARM/CMSIS/5.7.0/CMSIS/Core/Include-ID:/KeilC/SONiX/SN32F4_DFP/1.0.1/Device/Include-D__UVISION_VERSION="538" -D_RTE_ -DSN32F400 -D_RTE_-o ./objects/keyscan.o -MD)
+F (.\Source\Module\KeyScan.c)(0x687EF4E1)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ./Source/main_task-I./RTE/_Target_1-ID:/KeilC/ARM/CMSIS/5.7.0/CMSIS/Core/Include-ID:/KeilC/SONiX/SN32F4_DFP/1.0.1/Device/Include-D__UVISION_VERSION="538" -D_RTE_ -DSN32F400 -D_RTE_-o ./objects/keyscan.o -MD)
 I (Source\Module\KeyScan.h)(0x687EEE32)
 I (D:\KeilC\ARM\ARMCLANG\include\stdint.h)(0x5ED619F4)
 I (Source\Module\..\Driver\Utility.h)(0x687EEE32)
@@ -146,7 +146,7 @@ I (D:\KeilC\ARM\CMSIS\5.7.0\CMSIS\Core\Include\cmsis_armclang.h)(0x5E8EDF32)
 I (D:\KeilC\ARM\ARMCLANG\include\arm_compat.h)(0x5E0CD0FC)
 I (D:\KeilC\ARM\ARMCLANG\include\arm_acle.h)(0x5E0CD128)
 I (D:\KeilC\SONiX\SN32F4_DFP\1.0.1\Device\Include\system_SN32F400.h)(0x623C3E8E)
-F (.\Source\Module\Segment.c)(0x687EEE32)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ./Source/main_task-I./RTE/_Target_1-ID:/KeilC/ARM/CMSIS/5.7.0/CMSIS/Core/Include-ID:/KeilC/SONiX/SN32F4_DFP/1.0.1/Device/Include-D__UVISION_VERSION="538" -D_RTE_ -DSN32F400 -D_RTE_-o ./objects/segment.o -MD)
+F (.\Source\Module\Segment.c)(0x687EF4D0)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ./Source/main_task-I./RTE/_Target_1-ID:/KeilC/ARM/CMSIS/5.7.0/CMSIS/Core/Include-ID:/KeilC/SONiX/SN32F4_DFP/1.0.1/Device/Include-D__UVISION_VERSION="538" -D_RTE_ -DSN32F400 -D_RTE_-o ./objects/segment.o -MD)
 I (Source\Module\Segment.h)(0x687EEE32)
 I (D:\KeilC\SONiX\SN32F4_DFP\1.0.1\Device\Include\SN32F400.h)(0x66162B34)
 I (D:\KeilC\ARM\CMSIS\5.7.0\CMSIS\Core\Include\core_cm0.h)(0x5E8EDF32)
@@ -158,7 +158,7 @@ I (D:\KeilC\ARM\ARMCLANG\include\arm_compat.h)(0x5E0CD0FC)
 I (D:\KeilC\ARM\ARMCLANG\include\arm_acle.h)(0x5E0CD128)
 I (D:\KeilC\SONiX\SN32F4_DFP\1.0.1\Device\Include\system_SN32F400.h)(0x623C3E8E)
 I (Source\Module\..\Driver\GPIO.h)(0x687EEE32)
-F (.\Source\Module\sst_flash.c)(0x687EEE32)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ./Source/main_task-I./RTE/_Target_1-ID:/KeilC/ARM/CMSIS/5.7.0/CMSIS/Core/Include-ID:/KeilC/SONiX/SN32F4_DFP/1.0.1/Device/Include-D__UVISION_VERSION="538" -D_RTE_ -DSN32F400 -D_RTE_-o ./objects/sst_flash.o -MD)
+F (.\Source\Module\sst_flash.c)(0x687EF4D4)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ./Source/main_task-I./RTE/_Target_1-ID:/KeilC/ARM/CMSIS/5.7.0/CMSIS/Core/Include-ID:/KeilC/SONiX/SN32F4_DFP/1.0.1/Device/Include-D__UVISION_VERSION="538" -D_RTE_ -DSN32F400 -D_RTE_-o ./objects/sst_flash.o -MD)
 I (D:\KeilC\SONiX\SN32F4_DFP\1.0.1\Device\Include\SN32F400.h)(0x66162B34)
 I (D:\KeilC\ARM\CMSIS\5.7.0\CMSIS\Core\Include\core_cm0.h)(0x5E8EDF32)
 I (D:\KeilC\ARM\ARMCLANG\include\stdint.h)(0x5ED619F4)
@@ -173,7 +173,7 @@ I (Source\Module\..\Driver\SPI.h)(0x687EEE32)
 I (D:\KeilC\SONiX\SN32F4_DFP\1.0.1\Device\Include\SN32F400_Def.h)(0x623C3E5C)
 I (Source\Module\..\Driver\WDT.h)(0x687EEE32)
 F (.\Source\Readme\readme.txt)(0x687EEE32)()
-F (.\Source\main_task\main_task.c)(0x687EF2A5)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ./Source/main_task-I./RTE/_Target_1-ID:/KeilC/ARM/CMSIS/5.7.0/CMSIS/Core/Include-ID:/KeilC/SONiX/SN32F4_DFP/1.0.1/Device/Include-D__UVISION_VERSION="538" -D_RTE_ -DSN32F400 -D_RTE_-o ./objects/main_task.o -MD)
+F (.\Source\main_task\main_task.c)(0x687EF4CD)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ./Source/main_task-I./RTE/_Target_1-ID:/KeilC/ARM/CMSIS/5.7.0/CMSIS/Core/Include-ID:/KeilC/SONiX/SN32F4_DFP/1.0.1/Device/Include-D__UVISION_VERSION="538" -D_RTE_ -DSN32F400 -D_RTE_-o ./objects/main_task.o -MD)
 I (Source\main_task\..\Driver\GPIO.h)(0x687EEE32)
 I (D:\KeilC\SONiX\SN32F4_DFP\1.0.1\Device\Include\SN32F400.h)(0x66162B34)
 I (D:\KeilC\ARM\CMSIS\5.7.0\CMSIS\Core\Include\core_cm0.h)(0x5E8EDF32)
@@ -195,9 +195,9 @@ I (Source\main_task\..\Module\KeyScan.h)(0x687EEE32)
 I (Source\main_task\..\Module\Buzzer.h)(0x687EEE32)
 I (Source\main_task\..\Module\Segment.h)(0x687EEE32)
 I (Source\main_task\..\Module\sst_flash.h)(0x687EEE32)
-I (Source\main_task\main_task.h)(0x687EF270)
-I (Source\main_task\hand_task.h)(0x687EF280)
-F (.\Source\main_task\hand_task.c)(0x687EF299)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ./Source/main_task-I./RTE/_Target_1-ID:/KeilC/ARM/CMSIS/5.7.0/CMSIS/Core/Include-ID:/KeilC/SONiX/SN32F4_DFP/1.0.1/Device/Include-D__UVISION_VERSION="538" -D_RTE_ -DSN32F400 -D_RTE_-o ./objects/hand_task.o -MD)
+I (Source\main_task\main_task.h)(0x687EF4E5)
+I (Source\main_task\hand_task.h)(0x687EF4CB)
+F (.\Source\main_task\hand_task.c)(0x687EF4C9)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ./Source/main_task-I./RTE/_Target_1-ID:/KeilC/ARM/CMSIS/5.7.0/CMSIS/Core/Include-ID:/KeilC/SONiX/SN32F4_DFP/1.0.1/Device/Include-D__UVISION_VERSION="538" -D_RTE_ -DSN32F400 -D_RTE_-o ./objects/hand_task.o -MD)
 I (Source\main_task\..\Driver\GPIO.h)(0x687EEE32)
 I (D:\KeilC\SONiX\SN32F4_DFP\1.0.1\Device\Include\SN32F400.h)(0x66162B34)
 I (D:\KeilC\ARM\CMSIS\5.7.0\CMSIS\Core\Include\core_cm0.h)(0x5E8EDF32)
@@ -209,10 +209,10 @@ I (D:\KeilC\ARM\ARMCLANG\include\arm_compat.h)(0x5E0CD0FC)
 I (D:\KeilC\ARM\ARMCLANG\include\arm_acle.h)(0x5E0CD128)
 I (D:\KeilC\SONiX\SN32F4_DFP\1.0.1\Device\Include\system_SN32F400.h)(0x623C3E8E)
 I (Source\main_task\..\Module\Buzzer.h)(0x687EEE32)
-I (Source\main_task\..\main_task\main_task.h)(0x687EF270)
-I (Source\main_task\..\main_task\hand_task.h)(0x687EF280)
-F (.\Source\main_task\hand_task.h)(0x687EF280)()
-F (.\Source\main_task\main_task.h)(0x687EF270)()
+I (Source\main_task\..\main_task\main_task.h)(0x687EF4E5)
+I (Source\main_task\..\main_task\hand_task.h)(0x687EF4CB)
+F (.\Source\main_task\hand_task.h)(0x687EF4CB)()
+F (.\Source\main_task\main_task.h)(0x687EF4E5)()
 F (RTE/Device/SN32F407F/startup_SN32F400.s)(0x687EEE32)(--cpu Cortex-M0 --pd "__EVAL SETA 1" -g-I.\RTE\_Target_1-ID:\KeilC\ARM\CMSIS\5.7.0\CMSIS\Core\Include-ID:\KeilC\SONiX\SN32F4_DFP\1.0.1\Device\Include--pd "__UVISION_VERSION SETA 538"--pd "_RTE_ SETA 1"--pd "SN32F400 SETA 1"--pd "_RTE_ SETA 1"--list .\listings\startup_sn32f400.lst--xref -o .\objects\startup_sn32f400.o--depend .\objects\startup_sn32f400.d)
 F (RTE/Device/SN32F407F/system_SN32F400.c)(0x687EEE32)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ./Source/main_task-I./RTE/_Target_1-ID:/KeilC/ARM/CMSIS/5.7.0/CMSIS/Core/Include-ID:/KeilC/SONiX/SN32F4_DFP/1.0.1/Device/Include-D__UVISION_VERSION="538" -D_RTE_ -DSN32F400 -D_RTE_-o ./objects/system_sn32f400.o -MD)
 I (D:\KeilC\ARM\ARMCLANG\include\stdint.h)(0x5ED619F4)
