@@ -1,8 +1,7 @@
 /*
  * Project      : MCU V2 - Digital Clock Controller
- * Author       : Tran Nam
+ * Author       : UTE Chill Guy Team
  * Date         : 22/07/2025
- * Email        : trannam6362@gmail.com
  * Version      : 2.2
  *
  * Description  : 

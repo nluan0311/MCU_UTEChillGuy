@@ -2,10 +2,8 @@
 * File        : main_task.h
 * Description : Header file for main task control in application logic.
 * Includes state definitions and initialization interfaces.
-* Author      : namne1204
+* Author       : UTE Chill Guy Team
 * Date        : 2025/07/22 9:07
-* GitHub      : https://github.com/namne1204
-* Revision    : 2.3 - Added prototype for shared function.
 *****************************************************************************/
 
 #ifndef __MAIN_TASK_H

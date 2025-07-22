@@ -2,7 +2,7 @@
 * COMPANY:			SONiX
 * DATE:					2023/11
 * AUTHOR:				SA1
-* IC:						SN32F400
+* IC:					SN32F400
 * DESCRIPTION:	ADC related functions.
 *____________________________________________________________________________
 * REVISION	Date				User		Description

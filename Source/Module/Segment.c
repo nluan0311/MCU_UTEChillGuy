@@ -1,8 +1,7 @@
 /******************** (C) COPYRIGHT 2021 SONiX *******************************
 * COMPANY:   SONiX
 * DATE:      2025/07
-* AUTHOR:    namne1204
-* GITHUB:    https://github.com/namne1204
+* AUTHOR:    UTE Chill Guy Team
 * IC:        SN32F400
 *____________________________________________________________________________
 *    REVISION       Date         User         Description

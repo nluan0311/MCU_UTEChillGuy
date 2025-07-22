@@ -1,9 +1,9 @@
 /******************** (C) COPYRIGHT 2013 SONiX *******************************
-* COMPANY:			SONiX
+* COMPANY:				SONiX
 * DATE:					2016/03
-* AUTHOR:				SA1
-* IC:						SN32F240/230/220 
-* DESCRIPTION:	LED_Function.c
+* AUTHOR:				UTE Chill Guy Team
+* IC:					SN32F240/230/220 
+* DESCRIPTION:			LED_Function.c
 *____________________________________________________________________________
 * REVISION	Date				User		Description
 * 1.0				2018/12/21	SA1			1. First release
