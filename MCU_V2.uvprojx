@@ -479,6 +479,21 @@
               <FileType>1</FileType>
               <FilePath>.\Source\main_task\main_task.c</FilePath>
             </File>
+            <File>
+              <FileName>hand_task.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Source\main_task\hand_task.c</FilePath>
+            </File>
+            <File>
+              <FileName>hand_task.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Source\main_task\hand_task.h</FilePath>
+            </File>
+            <File>
+              <FileName>main_task.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Source\main_task\main_task.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

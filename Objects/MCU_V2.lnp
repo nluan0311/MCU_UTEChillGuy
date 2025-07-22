@@ -13,6 +13,7 @@
 ".\objects\segment.o"
 ".\objects\sst_flash.o"
 ".\objects\main_task.o"
+".\objects\hand_task.o"
 ".\objects\startup_sn32f400.o"
 ".\objects\system_sn32f400.o"
 --strict --scatter ".\Objects\MCU_V2.sct"

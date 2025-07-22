@@ -1,91 +1,117 @@
+/*
+ * Project      : MCU V2 - Digital Clock Controller
+ * Author       : Tran Nam
+ * Date         : 22/07/2025
+ * Email        : trannam6362@gmail.com
+ * Version      : 2.2 9:08
+ *
+ * Description  : 
+ * This source file handles specific key press events for the main task.
+ */
+
 /******************************************************/
 #include "..\Driver\GPIO.h"
-#include "..\Driver\CT16B0.h"
-#include "..\Driver\CT16B1.h"
-#include "..\Driver\CT16B5.h"
-#include "..\Driver\SYS_con_drive.h"
-#include "..\Driver\Utility.h"
-/******************************************************/
-#include "..\Module\KeyScan.h"
 #include "..\Module\Buzzer.h"
-#include "..\Module\Segment.h"
-/******************************************************/
 #include "..\main_task\main_task.h"
 #include "..\main_task\hand_task.h"
-/*_____ I N C L U D E S ____________________________________________________*/
-#include <SN32F400.h>
+/******************************************************/
 
-/*_____ D E F I N I T I O N S ______________________________________________*/
-
-
-/*_____ M A C R O S ________________________________________________________*/
-
-/*_____ D E C L A R A T I O N S ____________________________________________*/
-
-// static void buzzer_beep(void)
-// {
-
-// }
-static void handle_button_press(void)
+/**
+ * @brief Handles the logic for pressing KEY_1 (Enter/Cycle through Time Setting Mode).
+ */
+void handle_key1_press(void)
 {
-		if (timer_1ms_flag) 
-		 {
-				timer_1ms_flag = 0;
-				read_key = KeyScan();
+    if (!key14_pressed) 
+    {
+        key1_pressed = 1;
+        key1_count++;
+        if (key1_count > 2)
+        {
+            key1_count = 0;
+            key1_pressed = 0; 
+            blink_led0_active = 0; 
+            SET_LED0_OFF;
+            led_state[0] = 0;
+        }
+        else
+        {
+            blink_led0_active = 1;
+        }
+        buzzer_bip(200);
+        segment_blink_timer = 0;
+        segment_display_on = 1;
+    }
+}
 
-				if (read_key & KEY_PUSH_FLAG)
-				{
-					uint8_t key_val = read_key & 0xFF;
+/**
+ * @brief Handles the logic for pressing KEY_4 (Increment value - Up).
+ */
+void handle_key4_press(void)
+{
+    uint8_t mode = (key1_pressed) ? key1_count : key14_count;
+    if (key1_pressed) 
+    {    
+        if (mode == 1) hours = (hours + 1) % 24;
+        else if (mode == 2) minutes = (minutes + 1) % 60;
+    }
+    else if (key14_pressed) 
+    {
+        if (mode == 1) arm_hours = (arm_hours + 1) % 24;
+        else if (mode == 2) arm_minutes = (arm_minutes + 1) % 60;
+        alarm_time_changed = 1;
+    }
+    buzzer_bip(200);
+}
 
-					switch (key_val)
-					{
-					case KEY_1:// SETTING USER
-                    // TANG / GIam thoi gian
-                    // time out 30s
-                    // bip bip buzzer
-                    // display segment 7 
-                     //if (KEY_2)
-#if 0
-					SET_LED0_ON;
-					Digital_DisplayDEC(3210);
-					for (uint16_t t = 0; t < 500; /*in-loop*/) 					
-					{
-						if(timer_1ms_flag) 
-						{ 
-						timer_1ms_flag = 0; t++; 
-						}
-					}
- 		
-					SET_LED0_OFF;
-#endif
-					break;
+/**
+ * @brief Handles the logic for pressing KEY_8 (Decrement value - Down).
+ */
+void handle_key8_press(void)
+{
+    uint8_t mode = (key1_pressed) ? key1_count : key14_count;
+    if (key1_pressed) 
+    {
+        if (mode == 1) hours = (hours == 0) ? 23 : hours - 1;
+        else if (mode == 2) minutes = (minutes == 0) ? 59 : minutes - 1;
+    }
+    else if (key14_pressed) 
+    {
+        if (mode == 1) arm_hours = (arm_hours == 0) ? 23 : arm_hours - 1;
+        else if (mode == 2) arm_minutes = (arm_minutes == 0) ? 59 : arm_minutes - 1;
+        alarm_time_changed = 1;
+    }
+    buzzer_bip(200);
+}
 
-					case KEY_14: // timer user
-                          // TANG / GIam thoi gian
-                    // time out 30s
-                    // bip bip buzzer
-                    // saver in flas 
-                    // display segment 7 
-                    // read 
-
-#if 0
-					SET_LED1_ON;
-							Digital_DisplayDEC(0000);
-					for (uint16_t t = 0; t < 500; /*in-loop*/)
-					{
-					if(timer_1ms_flag) 
-					{ 
-						timer_1ms_flag = 0; t++; 
-					}
-						Digital_Scan();
-					}
-				
-					SET_LED1_OFF;
-#endif
-					break;
-					default:
-					break;
-					}
-				}
+/**
+ * @brief Handles the logic for pressing KEY_14 (Enter/Cycle through Alarm Setting Mode).
+ */
+void handle_key14_press(void)
+{
+    if (!key1_pressed)
+    {
+        key14_pressed = 1;
+        key14_count++;
+        if (key14_count > 2)
+        {
+            if (alarm_time_changed)
+            {
+                // This function is defined in main_task.c and declared in main_task.h
+                save_alarm_time_to_flash();
+                alarm_time_changed = 0;
+            }
+            key14_count = 0;
+            key14_pressed = 0;
+            blink_led0_active = 0;
+            SET_LED0_OFF;
+            led_state[0] = 0;
+        }
+        else
+        {
+            blink_led0_active = 1;
+        }
+        buzzer_bip(200);
+        segment_blink_timer = 0;
+        segment_display_on = 1;
     }
 }
